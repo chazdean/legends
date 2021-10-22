@@ -13,12 +13,29 @@ module.exports = (db) => {
     res.render("login");
   });
 
-  router.post("/login", (req, res) => {
-
-    //user authentication
-
-    res.redirect("maps"); //build routes/maps.js
+  router.get("/register", (req, res) => {
+    res.render("register");
   });
+
+  router.post("/login", (req, res) => {
+    //user authentication
+    //set the session cookie
+
+    res.redirect("/maps"); //build routes/maps.js
+  });
+
+  router.post("/register", (req, res) => {
+    //add new user to database
+    //set the session cookie
+
+    res.redirect("/maps"); //build routes/maps.js
+  });
+
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/");
+  });
+
 
   return router;
 };
