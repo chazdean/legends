@@ -1,6 +1,14 @@
-// See: https://sass-lang.com/
+// Layout set up
+@use 'colors';
 
-body,
 html {
-  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
 }
