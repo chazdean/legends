@@ -11,7 +11,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     // database functions to query for a list of 20 maps
 
-    res.render("maps", { templateVars });
+    res.render("maps");
   });
 
   //Render individual users maps
@@ -19,14 +19,14 @@ module.exports = (db) => {
     // database functions to query for all individual user maps
     // based on user_id
 
-    res.render("maps", { templateVars });
+    res.render("maps");
   });
 
   //Render the current users maps
   router.get("/favorites/:user_id", (req, res) => {
     // database functions to query for favorite maps of the current user
 
-    res.render("maps", { templateVars });
+    res.render("maps");
   });
 
   router.post("/favorites/:user_id", (req, res) => {
