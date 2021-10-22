@@ -91,4 +91,9 @@ body.login-page {
       }
     }
   }
+
+  .login-error {
+    color: colors.$schemeOrange;
+    font-size: 15px;
+  }
 }
