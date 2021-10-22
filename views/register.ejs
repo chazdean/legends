@@ -25,6 +25,10 @@
       <button type="submit">CREATE ACCOUNT</button>
     </form>
 
+    <% if (error) { %>
+      <span class="login-error"><em><%= error %></em></span>
+    <% } %>
+
   </div>
 
   <footer>

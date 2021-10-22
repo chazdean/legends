@@ -22,6 +22,10 @@
       <button type="submit">LOGIN</button>
     </form>
 
+    <% if (error) { %>
+      <span class="login-error"><em><%= error %></em></span>
+    <% } %>
+
   </div>
 
   <footer>
