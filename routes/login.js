@@ -1,27 +1,51 @@
 /*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ * All routes for user login, register & logout are in this file
  */
 
 const express = require('express');
 const router  = express.Router();
+const {
+  getUserWithEmail,
+  authenticateUser
+} = require('../databaseHelpers/userQueries')
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render("login");
+    res.render("login", { error: null });
   });
 
   router.get("/register", (req, res) => {
-    res.render("register");
+    res.render("register", { error: null });
   });
 
   router.post("/login", (req, res) => {
-    //user authentication
-    //set the session cookie
+    const email = req.body.email;
+    const password = req.body.password;
 
-    res.redirect("/maps"); //build routes/maps.js
+    // Checking first for empty fields
+    if (!email || !password) {
+      return res.render("login", {error: "Please enter a valid email and password"})
+    }
+
+    // Query the db for the users email
+    getUserWithEmail(email, db)
+      .then(userData => {
+        if (!userData) {
+          return res.render("login", { error: "Sorry, this email does not exist" });
+        }
+
+        if(!authenticateUser(password, userData)) {
+          return res.render("login", { error: "Sorry, this password is incorrect" });
+        }
+
+        // Email and password are correct - set cookie and switch to maps home page
+        req.session.user_id = userData.id;
+        res.redirect("/maps");
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
   });
 
   router.post("/register", (req, res) => {
@@ -35,7 +59,6 @@ module.exports = (db) => {
     req.session = null;
     res.redirect("/");
   });
-
 
   return router;
 };
