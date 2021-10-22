@@ -3,21 +3,34 @@
 
 <%- include('partials/_head'); %>
 
-<body>
-  <div class="register-container">
-    <h2>Create A New Account</h2>
-    <form method="POST" action="/register">
+<body class="login-page">
+  <div class=login-container>
+
+    <header>
+      <h3>Welcome to</h3>
+      <h2 class="logo">Legends</h2>
+      <p><em>Creating maps like a champ</em></p>
+    </header>
+
+    <form class="login-form" method="POST" action="/login">
       <div>
-        <label for="email">Email address</label>
+        <input type="name" name="name" placeholder="Full Name">
+      </div>
+      <div>
         <input type="email" name="email" placeholder="Email">
       </div>
       <div>
-        <label for="password">Password</label>
         <input type="password" name="password" placeholder="Password">
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">CREATE ACCOUNT</button>
     </form>
+
   </div>
+
+  <footer>
+    <span>Have an account? <a href="/">Login!</a> </span>
+  </footer>
+
 </body>
 
 </html>
