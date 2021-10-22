@@ -5,10 +5,13 @@
 
 <body class="login-page">
   <div class=login-container>
-    <div class="login-title">
+
+    <header>
       <h3>Welcome to</h3>
       <h2 class="logo">Legends</h2>
-    </div>
+      <p><em>Creating maps like a champ</em></p>
+    </header>
+
     <form class="login-form" method="POST" action="/login">
       <div>
         <input type="email" name="email" placeholder="Email">
@@ -16,11 +19,14 @@
       <div>
         <input type="password" name="password" placeholder="Password">
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">LOGIN</button>
     </form>
-    </div>
+
   </div>
 
+  <footer>
+    <span>Need an account? <a href="/register">Set one up now!</a> </span>
+  </footer>
 
 </body>
 
