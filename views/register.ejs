@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/_head'); %>
+
+<body>
+  <div class="login-container">
+    <h2>Create A New Account</h2>
+    <form method="POST" action="/register">
+      <div>
+        <label for="email">Email address</label>
+        <input type="email" name="email" placeholder="Email">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+
+</html>
