@@ -1,1 +1,18 @@
 @use 'colors';
+
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  height: 400px;
+  width: 400px;
+  background-color: colors.$schemeLightest;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
