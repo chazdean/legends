@@ -39,6 +39,33 @@ div.pins-map-details {
   }
 }
 
+.pins-container {
+  width: 96%;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
+.pin-container {
+  width: 100%;
+  height: 95px;
+  padding: 10px 20px 10px 20px;
+  color: colors.$schemeDarkest;
+  background-color: colors.$schemeLightest;
+  opacity: 70%;
+  border: solid 1px colors.$schemeLight;
+  border-radius: 10px;
+  box-shadow: 1px 1px 14px 12px colors.$schemeDarkest;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 74px;
+    width: 74px;
+    margin-right: 10px;
+    border-radius: 25%;
+  }
+}
 
 
