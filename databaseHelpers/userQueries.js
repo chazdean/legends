@@ -3,13 +3,12 @@
 const bcrypt = require('bcrypt');
 
 /**
- *
+ * getUserWithEmail
  * @param { string } email from the form body
  * @param {{ Pool }} db
  * @returns { Object } containing the users credentials, null if no user exists
  */
 const getUserWithEmail = function(email, db) {
-  console.log('this is running');
   const queryParams = [email];
   const queryString = `SELECT * FROM users WHERE email = $1;`;
 
@@ -26,7 +25,7 @@ const getUserWithEmail = function(email, db) {
 };
 
 /**
- *
+ * authenticateUser
  * @param { string } password from the form body
  * @param {{ Object }} dbCred user credentials from the database
  * @returns true if password for user matches the db, false if not
@@ -38,7 +37,39 @@ const authenticateUser = function(password, dbCred) {
   return true;
 };
 
+/**
+ * addNewUser
+ * @param { Object } clientData the entire form body object
+ * @param { Pool } db
+ * @returns { Object } contains only user data for the newly added user
+ */
+const addNewUser = function(clientData, db) {
+  const queryParams = [
+    clientData.name,
+    clientData.email,
+    bcrypt.hashSync(clientData.password, 10)
+  ];
+  const queryString = `
+    INSERT INTO
+      users (name, email, password)
+    VALUES
+      ($1, $2, $3)
+    RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+    .then(result => {
+      console.log('new user was added');
+      return result.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+
 module.exports = {
   getUserWithEmail,
-  authenticateUser
-}
+  authenticateUser,
+  addNewUser
+};
+
+
