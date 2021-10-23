@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
  * getUserWithEmail
  * @param { string } email from the form body
  * @param {{ Pool }} db
- * @returns { Object } containing the users credentials, null if no user exists
+ * @returns { Promise } containing an object of all the users credentials, null if no user exists
  */
 const getUserWithEmail = function(email, db) {
   const queryParams = [email];
@@ -17,6 +17,25 @@ const getUserWithEmail = function(email, db) {
       if (!result.rows.length) {
         return null;
       }
+      return result.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+
+/**
+ * getUserWithId
+ * @param { string } user_id from the cookie-session
+ * @param {{ Pool }} db
+ * @returns { Promise } containing and object with all the users credentials
+ */
+ const getUserWithId = function(user_id, db) {
+  const queryParams = [user_id];
+  const queryString = `SELECT * FROM users WHERE id = $1;`;
+
+  return db.query(queryString, queryParams)
+    .then(result => {
       return result.rows[0];
     })
     .catch(err => {
@@ -41,7 +60,7 @@ const authenticateUser = function(password, dbCred) {
  * addNewUser
  * @param { Object } clientData the entire form body object
  * @param { Pool } db
- * @returns { Object } contains only user data for the newly added user
+ * @returns { Promise } containing and object of only the newly added user data
  */
 const addNewUser = function(clientData, db) {
   const queryParams = [
@@ -67,6 +86,7 @@ const addNewUser = function(clientData, db) {
 
 module.exports = {
   getUserWithEmail,
+  getUserWithId,
   authenticateUser,
   addNewUser
 };
