@@ -45,16 +45,14 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const loginRoutes = require("./routes/login");
 const mapsRoutes = require("./routes/maps");
+const pinsRoutes = require("./routes/pins");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", loginRoutes(db));
 app.use("/maps", mapsRoutes(db));
-// Note: mount other resources here, using the same pattern above
+app.use("/pins", pinsRoutes(db));
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
