@@ -3,6 +3,7 @@
  */
 
 const express = require('express');
+const { func } = require('joi');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -11,7 +12,23 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     // database functions to query for a list of 20 maps
 
-    res.render("maps");
+    const getMaps = function(limit) {
+    const sql = `
+      SELECT *
+      FROM maps
+      LIMIT $1
+      `;
+    const params = [limit]
+
+     return db.query(sql, params)
+        .then(res => res.rows)
+        .catch(err => console.log(err.message));
+    }
+
+    getMaps(20).then((maps) => {
+      console.log("ALL MAPS", maps)
+      res.render("maps");
+    });
   });
 
   //Render individual users maps
