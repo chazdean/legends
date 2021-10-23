@@ -58,7 +58,6 @@ const addNewUser = function(clientData, db) {
 
   return db.query(queryString, queryParams)
     .then(result => {
-      console.log('new user was added');
       return result.rows[0];
     })
     .catch(err => {
