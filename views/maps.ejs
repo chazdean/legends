@@ -4,7 +4,46 @@
 <%- include('partials/_head'); %>
 
 <body>
-  <h2>Maps Page!</h2>
+  <nav class="nav-bar">
+    <ul class="nav-list">
+      <li><a class="nav-link" href="">📍</a></li>
+      <li><a class="nav-link" href="">CreateNew</a></li>
+      <li><a class="nav-link" href="">MyMaps</a></li>
+      <li><a class="nav-link" href="">Favorites</a></li>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="">User Name</a></li>
+          <li><a class="nav-link" href="">Logout</a></li>
+        </ul>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+  </header>
+
+  <main class="container">
+
+  <section class="map-container">
+    <header class="map-container-header">
+      <h3>Maps Menu - List (ALL MAPS)</h3>
+    </header>
+    <article class="map">
+      <header class="map-header">
+        <h2><a class="map-link" href="">Map Name</a></h2>
+      </header>
+      <main class="map-main">
+        <p>Fields - Map Name, Description, Location (city), Creator, Date Created, # Pins, # Likes, FavButton</p>
+      </main>
+      <footer class="map-footer">
+        <span class="map-date"></span>
+        <i class="fas fa-star icon"></i>
+      </footer>
+    </article>
+
+  </section>
+
+  </main>
+
+  <footer></footer>
 </body>
 
 </html>
