@@ -3,22 +3,41 @@
 
 <%- include('partials/_head'); %>
 
-<body>
+<body class="login-page">
+
   <div class="login-container">
-    <h2>Welcome to</h2>
-    <h2>Legends</h2>
-    <form method="POST" action="/login">
-      <div>
-        <label for="email">Email address</label>
-        <input type="email" name="email" placeholder="Email">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password">
-      </div>
-      <button type="submit">Login</button>
-    </form>
+
+    <img src="/images/city-scape.jpg">
+
+    <div class=login-form-container>
+      <header>
+        <h3>Welcome to</h3>
+        <h2 class="logo">Legends</h2>
+        <p><em>Creating maps like a champ</em></p>
+      </header>
+
+      <form class="login-form" method="POST" action="/login">
+        <div>
+          <input type="email" name="email" placeholder="Email">
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password">
+        </div>
+        <button type="submit">LOGIN</button>
+      </form>
+
+      <% if (error) { %>
+        <span class="login-error"><em><%= error %></em></span>
+      <% } %>
+    </div>
   </div>
+
+  <div>
+    <span>Need an account? <a href="/register">Set one up now!</a> </span>
+  </div>
+
+  <%- include('partials/_footer'); %>
+
 </body>
 
 </html>
