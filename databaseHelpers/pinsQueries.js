@@ -20,10 +20,29 @@ const getPinsForMap = function(map_id, db) {
     .catch(err => {
       console.log(err.message);
     });
+};
 
+const getMapDetails = function(map_id, db) {
+  const queryParams = [map_id];
+  const queryString = `
+    SELECT
+      *
+    FROM
+      maps
+    WHERE
+      id = $1;`;
+
+  return db.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
 };
 
 
 module.exports = {
-  getPinsForMap
+  getPinsForMap,
+  getMapDetails
 };
