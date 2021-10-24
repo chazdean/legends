@@ -16,8 +16,10 @@ module.exports = (db) => {
 
     getPinsForMap(map_id, db)
       .then((pinsArray) => {
-        console.log(pinsArray);
-        res.render("pins");
+        const templateVars = {
+          pinsArray
+        };
+        res.render("pins", templateVars);
       })
       .catch(e => {
         console.error(e);
