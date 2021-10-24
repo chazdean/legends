@@ -9,8 +9,8 @@
 
     <header>
       <div class="pins-map-details">
-        <h2>Map Title • City</h2>
-        <h3><em>Map Description</em></h3>
+        <h2><%= mapData.title %> • <%= mapData.city %></h2>
+        <h3><em><%= mapData.description %></em></h3>
       </div>
       <button id="add-new-pin" type="submit">+ Add Pin</button>
     </header>
@@ -32,10 +32,14 @@
           </div>
           <div class=pin-container-inside>
             <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pin.creator %></span>
-            <div class="pin-modify-buttons">
-              <button id="pin-update-button"><i class="fas fa-edit"></i></button>
-              <button id="pin-delete-button"><i class="fas fa-trash-alt"></i></button>
-            </div>
+
+            <% if (user_id === pin.creator_id) { %>
+              <div class="pin-modify-buttons">
+                <button id="pin-update-button"><i class="fas fa-edit"></i></button>
+                <button id="pin-delete-button"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            <% } %>
+
           </div>
         </article>
       <% } %>
