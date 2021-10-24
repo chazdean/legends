@@ -4,20 +4,8 @@
 <%- include('partials/_head'); %>
 
 <body>
-  <nav class="nav-bar">
-    <ul>
-      <div class="nav-left">
-        <li><a class="logo" href="http://localhost:8080/maps">📍</a></li>
-        <li><a href="">CreateNew</a></li>
-        <li><a href="http://localhost:8080/maps/<%= user %>">MyMaps</a></li>
-        <li><a href="http://localhost:8080/maps/favorites/<%= user %>">Favorites</a></li>
-      </div>
-      <div class="nav-right">
-        <li><a href=""><i class="fas fa-user"></i></a></li>
-        <li><a href="http://localhost:8080/maps/">Logout</a></li>
-      </div>
-    </ul>
-  </nav>
+
+  <%- include('partials/_nav'); %>
 
   <header class="page-header">
   </header>
