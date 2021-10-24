@@ -36,6 +36,7 @@ div.pins-map-details {
 
   &:hover {
     opacity: 100%;
+    transform: scale(1.05);
   }
 }
 
@@ -50,6 +51,7 @@ div.pins-map-details {
 .pin-container {
   width: 100%;
   height: 95px;
+  margin-bottom: 18px;
   padding: 10px 20px 10px 20px;
   color: colors.$schemeDarkest;
   background-color: colors.$schemeLightest;
@@ -58,14 +60,92 @@ div.pins-map-details {
   border-radius: 10px;
   box-shadow: 1px 1px 14px 12px colors.$schemeDarkest;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   img {
     height: 74px;
     width: 74px;
-    margin-right: 10px;
+    margin-right: 18px;
     border-radius: 25%;
   }
 }
+
+.pin-container-inside {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+div.pin-details {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  h4 {
+    margin: 0px;
+    padding-bottom: 5px;
+    font-size: 22px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+  }
+
+}
+
+.coords {
+  opacity: 80%;
+}
+
+.pin-creator {
+  font-size: 20px;
+  opacity: 80%;
+  margin-right: 12px;
+}
+
+.fa-map-marker-alt {
+  padding-right: 5px;
+}
+
+.pin-modify-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+}
+
+#pin-update-button {
+  color: colors.$schemeLightest;
+  background-color: colors.$schemeDarkest;
+  opacity: 80%;
+  border: solid 1px colors.$schemeLightest;
+  box-shadow: 1px 1px 3px 1px colors.$schemeDarkest;
+  &:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+  }
+}
+
+#pin-delete-button {
+  background-color: colors.$schemeOrange;
+  opacity: 80%;
+  border: solid 1px colors.$schemeDarkest;
+  box-shadow: 1px 1px 3px 1px colors.$schemeDarkest;
+  &:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+  }
+}
+
 
 
