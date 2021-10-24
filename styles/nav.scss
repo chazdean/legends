@@ -1,0 +1,48 @@
+@use 'colors';
+
+nav.nav-bar {
+
+width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: colors.$schemeDarkest;
+
+  }
+
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  li .logo {
+    font-size: x-small;
+  }
+
+  .nav-right {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .nav-left {
+    display: flex;
+    flex-direction: row;
+  }
+
+  li a:hover {
+    background-color: colors.$schemeOrange;
+  }
+
+}
+
+
+
