@@ -17,19 +17,28 @@
 
     <section class="pins-container">
 
-      <article class=pin-container>
-        <img src="https://i.imgur.com/VUEGlFp.jpeg">
-        <div>
-          <h3>Maker Pizza</h3>
-          <h4><em>The best pizza place around</em></h4>
-        </div>
-        <span class="pin-creator">Alice Long</span>
-        <div class="pin-modify-buttons">
-          <button>Update</button>
-          <button>Delete</button>
-        </div>
-      </article>
-
+      <% for(const pin of pinsArray) { %>
+        <article class=pin-container>
+          <div class=pin-container-inside>
+            <img src="<%= pin.img_url %>">
+            <div class="pin-details">
+              <h4><%= pin.title %></h4>
+              <p><em><%= pin.description %></em></p>
+            </div>
+          </div>
+          <div class="pin-details">
+            <p class="coords"><em>LAT: <%= pin.lat %></em></p>
+            <p class="coords"><em>LNG: <%= pin.lng %></em></p>
+          </div>
+          <div class=pin-container-inside>
+            <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pin.creator %></span>
+            <div class="pin-modify-buttons">
+              <button id="pin-update-button"><i class="fas fa-edit"></i></button>
+              <button id="pin-delete-button"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </article>
+      <% } %>
 
     </section>
 
