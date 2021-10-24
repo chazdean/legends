@@ -5,15 +5,17 @@
 
 <body>
   <nav class="nav-bar">
-    <ul class="nav-list">
-      <li><a class="nav-link" href="">📍</a></li>
-      <li><a class="nav-link" href="">CreateNew</a></li>
-      <li><a class="nav-link" href="">MyMaps</a></li>
-      <li><a class="nav-link" href="">Favorites</a></li>
-        <ul class="nav-list">
-          <li><a class="nav-link" href="">User Name</a></li>
-          <li><a class="nav-link" href="">Logout</a></li>
-        </ul>
+    <ul>
+      <div class="nav-left">
+        <li><a class="logo" href="http://localhost:8080/maps">📍</a></li>
+        <li><a href="">CreateNew</a></li>
+        <li><a href="http://localhost:8080/maps/<%= user %>">MyMaps</a></li>
+        <li><a href="http://localhost:8080/maps/favorites/<%= user %>">Favorites</a></li>
+      </div>
+      <div class="nav-right">
+        <li><a href=""><i class="fas fa-user"></i></a></li>
+        <li><a href="http://localhost:8080/maps/">Logout</a></li>
+      </div>
     </ul>
   </nav>
 
@@ -24,26 +26,38 @@
 
   <section class="map-container">
     <header class="map-container-header">
-      <h3>Maps Menu - List (ALL MAPS)</h3>
+      <h3></h3>
     </header>
-    <article class="map">
-      <header class="map-header">
-        <h2><a class="map-link" href="">Map Name</a></h2>
-      </header>
-      <main class="map-main">
-        <p>Fields - Map Name, Description, Location (city), Creator, Date Created, # Pins, # Likes, FavButton</p>
-      </main>
-      <footer class="map-footer">
-        <span class="map-date"></span>
-        <i class="fas fa-star icon"></i>
-      </footer>
-    </article>
-
+    <!-- Shows map for each map in database -->
+    <% for(let map of maps) { %>
+      <article class="map">
+        <header class="map-header">
+          <span class="map-creator-name"><%= map.creator_name %></span>
+        </header>
+        <main class="map-main">
+          <div class="map-thumbnail">image</div>
+          <div class="map-details">
+            <span class="name"><%= map.title %></span>
+            <span class="location"><%= map.city %>, <%= map.country %></span>
+            <span class="description"><%= map.description %></span>
+          </div>
+        </main>
+        <footer class="map-footer">
+          <div class="map-footer-left">
+            <span class="map-date"><%= map.date_created %></span>
+          </div>
+          <div class="map-footer-right">
+            <i class="fas fa-map-pin"> 0</i>
+            <i class="far fa-star"></i>
+          </div>
+        </footer>
+      </article>
+    <% } %>
   </section>
 
   </main>
 
-  <footer></footer>
+  <%- include('partials/_footer'); %>
 </body>
 
 </html>
