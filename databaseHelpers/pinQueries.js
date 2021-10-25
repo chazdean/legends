@@ -34,21 +34,48 @@ const getPinDetails = function(pin_id, db) {
  * @returns { Promise } containing an object with details for the newly updated pin
  */
  const updatePin = function(newPinData, db) {
-  const queryParams = [
-    newPinData.title,
-    newPinData.description,
-    newPinData.img_url,
-    newPinData.lat,
-    newPinData.lng,
-    newPinData.map_id,
-  ];
-  const queryString = `
-    SELECT
-      *
-    FROM
-      pins
-    WHERE
-      id = $1;`;  // NEED TO BUILD THIS WITH CONDITIONS
+  const queryParams = [];
+  let queryString = `UPDATE pins SET `;
+
+  if (newPinData.title) {
+    queryParams.push(`${newPinData.title}`);
+    queryString += `title = $${queryParams.length}`;
+  }
+
+  if (newPinData.description) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newPinData.description}`);
+    queryString += `description = $${queryParams.length}`;
+  }
+
+  if (newPinData.img_url) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newPinData.img_url}`);
+    queryString += `img_url = $${queryParams.length}`;
+  }
+
+  if (newPinData.lat) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newPinData.lat}`);
+    queryString += `lat = $${queryParams.length}`;
+  }
+
+  if (newPinData.lng) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newPinData.lng}`);
+    queryString += `lng = $${queryParams.length}`;
+  }
+
+  queryParams.push(`${newPinData.pin_id}`);
+  queryString += ` WHERE id = $${queryParams.length} RETURNING *;`
 
   return db.query(queryString, queryParams)
     .then(result => {

@@ -33,35 +33,33 @@ module.exports = (db) => {
 
   });
 
-    //Update some information about the current pin in the database
-    router.post("/:pin_id", (req, res) => {
-      const user = req.session.user_id;
-      const pin_id = req.params.pin_id;
+  //Update some information about the current pin in the database
+  router.post("/:pin_id", (req, res) => {
+    const pin_id = req.params.pin_id;
 
-      updatePin({ ...req.body, pin_id }, db)  //need to return back the pin data
-        .then((data) => {
-          console.log('data back from query', data);  // **** TO REMOVE
-          res.redirect(`pins/${data.map_id}`);
-        })
-        .catch(e => {
-          console.error(e);
-          res.send(e);
-        });
-    });
+    updatePin({ ...req.body, pin_id }, db)
+      .then((data) => {
+        res.redirect(`../pins/${data.map_id}`);
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
+  });
 
-    //delete the pin from the database
-    router.post("/delete/:pin_id", (req, res) => {
-      const pin_id = req.params.pin_id;
+  //delete the pin from the database
+  router.post("/delete/:pin_id", (req, res) => {
+    const pin_id = req.params.pin_id;
 
-      deletePin(pin_id, db)
-        .then((data) => {
-          res.redirect(`../../pins/${data.map_id}`);
-        })
-        .catch(e => {
-          console.error(e);
-          res.send(e);
-        });
-    });
+    deletePin(pin_id, db)
+      .then((data) => {
+        res.redirect(`../../pins/${data.map_id}`);
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
+  });
 
   return router;
 };

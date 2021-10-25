@@ -12,6 +12,9 @@
     <header>
       <div class="pins-map-details">
         <h2>What would you like to update?</h2>
+        <form method="GET" action="/pins/<%= pinData.map_id %>">
+          <button id="cancel-new-pin-button" type="submit">Cancel</button>
+        </form>
       </div>
     </header>
 
@@ -49,7 +52,6 @@
         <div>
           <input type="url" name="img_url" placeholder="Image URL">
           <div class="add-pin-button-box">
-            <button id="cancel-new-pin-button" href="/pins/<%= pinData.map_id %>" type="reset">Cancel</button>
             <button id="submit-new-pin-button" type="submit">Update</button>
           </div>
         </div>
