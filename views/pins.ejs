@@ -17,10 +17,10 @@
       <button id="add-new-pin" type="submit">+ Add Pin</button>
     </header>
 
-    <section class="new-pin-container">
+    <section class="new-pin-container hidden">
       <form id="new-pin-form" method="POST" action="/pins/<%= mapData.id %>">
         <div>
-          <input name="title" placeholder="Title">
+          <input id="new-pin-title" name="title" placeholder="Title">
           <input name="description" placeholder="Description">
         </div>
         <div>
@@ -29,7 +29,10 @@
         </div>
         <div>
           <input type="url" name="img_url" placeholder="Image URL">
-          <button type="submit">Add</button>
+          <div class="add-pin-button-box">
+            <button id="cancel-new-pin-button" type="reset">Cancel</button>
+            <button id="submit-new-pin-button" type="submit">Add</button>
+          </div>
         </div>
       </form>
     </section>
@@ -75,7 +78,8 @@
   <%- include('partials/_footer'); %>
 
 
-  <!-- Embedded JS for Google Maps API -->
+  <!-- Embedded JS for buttons & the Google Maps API -->
+  <script src="/scripts/pinPageScripts.js"></script>
   <script>
 
     function initMap() {
