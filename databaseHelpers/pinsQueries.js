@@ -39,11 +39,13 @@ const getMapDetails = function(map_id, db) {
   const queryParams = [map_id];
   const queryString = `
     SELECT
-      *
+      maps.*,
+      users.name AS map_creator
     FROM
       maps
+      JOIN users ON maps.creator_id = users.id
     WHERE
-      id = $1;`;
+      maps.id = $1;`;
 
   return db.query(queryString, queryParams)
     .then(result => {
