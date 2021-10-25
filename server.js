@@ -46,12 +46,14 @@ app.use(express.static("public"));
 const loginRoutes = require("./routes/login");
 const mapsRoutes = require("./routes/maps");
 const pinsRoutes = require("./routes/pins");
+const pinRoutes = require("./routes/pin");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", loginRoutes(db));
 app.use("/maps", mapsRoutes(db));
 app.use("/pins", pinsRoutes(db));
+app.use("/pin", pinRoutes(db));
 
 
 app.listen(PORT, () => {
