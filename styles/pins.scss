@@ -2,7 +2,7 @@
 @use 'mixins';
 
 .main-pins-container {
-  padding-bottom: 2.5rem;
+  padding-bottom: 3.5rem;
   margin: 20px 60px;
   display: flex;
   flex-direction: column;
@@ -155,28 +155,10 @@ div.pin-details {
   align-items: center;
 }
 
-#show-google-map {
-  width: 150px;
-  height: 50px;
-  font-size: 18px;
-  font-weight: 900;
-  color: colors.$schemeDarkest;
-  background-color: colors.$schemeLightest;
-  opacity: 80%;
-  border-radius: 25px;
-  border: solid 1px colors.$schemeLight;
-  box-shadow: 1px 1px 5px 2px colors.$schemeDarkest;
-  @include mixins.objBounce;
-
-  &:hover {
-    opacity: 100%;
-    transform: scale(1.05);
-  }
-}
-
 #map {
-  height: 400px;
-  width: 600px;
+  height: 500px;
+  width: 800px;
+  opacity: 90%;
 }
 
 
