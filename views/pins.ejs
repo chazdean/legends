@@ -17,6 +17,23 @@
       <button id="add-new-pin" type="submit">+ Add Pin</button>
     </header>
 
+    <section class="new-pin-container">
+      <form id="new-pin-form" method="POST" action="/pins/<%= mapData.id %>">
+        <div>
+          <input name="title" placeholder="Title">
+          <input name="description" placeholder="Description">
+        </div>
+        <div>
+          <input type="number" name="lat" placeholder="Latitude">
+          <input type="number" name="lng" placeholder="Longitude">
+        </div>
+        <div>
+          <input type="url" name="img_url" placeholder="Image URL">
+          <button type="submit">Add</button>
+        </div>
+      </form>
+    </section>
+
     <section class="pins-container">
 
       <% for(const pin of pinsArray) { %>
@@ -57,6 +74,7 @@
 
   <%- include('partials/_footer'); %>
 
+
   <!-- Embedded JS for Google Maps API -->
   <script>
 
@@ -84,6 +102,7 @@
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=<%= config.API_KEY %>&callback=initMap">
   </script>
+
 
 </body>
 
