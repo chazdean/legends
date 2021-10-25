@@ -49,10 +49,7 @@
     </section>
 
     <section id="map-container">
-      <button id="show-google-map">Show Map <i class="fas fa-angle-double-down"></i></button>
-
       <div id="map">
-
       </div>
     </section>
 
@@ -60,9 +57,33 @@
 
   <%- include('partials/_footer'); %>
 
-  <!-- App JS -->
-  <script type="module" src='/scripts/config.js'></script>
-  <script type="module" src="/scripts/pinScripts.js"></script>
+  <!-- Embedded JS for Google Maps API -->
+  <script>
+
+    function initMap() {
+      let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
+      });
+
+      function addMarker(coords) {
+        let marker = new google.maps.Marker({
+          position: coords,
+          map: map
+        });
+      }
+
+      <% for (const pin of pinsArray) { %>
+        addMarker({ lat: <%= pin.lat %>, lng: <%= pin.lng %> });
+      <% } %>
+
+    };
+
+  </script>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=<%= config.API_KEY %>&callback=initMap">
+  </script>
 
 </body>
 
