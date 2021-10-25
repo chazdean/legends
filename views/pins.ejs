@@ -57,8 +57,10 @@
 
             <% if (user === pin.creator_id) { %>
               <div class="pin-modify-buttons">
-                <button id="pin-update-button"><i class="fas fa-pencil-alt"></i></button>
-                <button id="pin-delete-button"><i class="fas fa-trash-alt"></i></button>
+                <button href="/pin/<%= pin.id %>"><i class="fas fa-pencil-alt"></i></button>
+                <form method="POST" action="/pin/delete/<%= pin.id %>">
+                  <button><i class="fas fa-trash-alt"></i></button>
+                </form>
               </div>
             <% } %>
 
