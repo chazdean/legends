@@ -16,7 +16,9 @@ const getMap = function(mapID, db) {
     });
 };
 
-const addMap = function(mapData, db) {
+const addMap = function(userID, mapData, db) {
+  const date = new Date();
+  const queryParams = [userID, mapData.title, mapData.description, mapData.city, mapData.province, mapData.country, date]
   const queryString = `
     INSERT INTO
       maps (creator_id, title, description, city, province, country, date_created)
@@ -25,7 +27,7 @@ const addMap = function(mapData, db) {
     RETURNING *;
     `;
 
-  return db.query(queryString)
+  return db.query(queryString, queryParams)
     .then(result => {
       return result.rows[0]
     })
@@ -43,7 +45,7 @@ const updateMap = function(mapID, mapData, db) {
   RETURNING *;
     `;
 
-  return db.query(queryString)
+  return db.query(queryString, queryParams)
     .then(result => {
       return result.rows[0]
     })
@@ -53,13 +55,14 @@ const updateMap = function(mapID, mapData, db) {
 };
 
 const deleteMap = function(mapID, db) {
+  const queryParams = [mapID]
   const queryString = `
   DELETE FROM maps
   WHERE map.id = $
   RETURNING *;
     `;
 
-  return db.query(queryString)
+  return db.query(queryString, queryParams)
     .then(result => {
       return result.rows[0]
     })
