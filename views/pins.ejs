@@ -92,15 +92,19 @@
         center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
       });
 
-      function addMarker(coords) {
+      function addMarker(settings) {
         let marker = new google.maps.Marker({
-          position: coords,
-          map: map
+          position: settings.coords,
+          map: map,
+          label: settings.label
         });
       }
 
-      <% for (const pin of pinsArray) { %>
-        addMarker({ lat: <%= pin.lat %>, lng: <%= pin.lng %> });
+      <% for (let i = 0; i < pinsArray.length; i++) { %>
+        addMarker({
+          coords: { lat: <%= pinsArray[i].lat %>, lng: <%= pinsArray[i].lng %> },
+          label: (<%= i %> + 1).toString()
+        });
       <% } %>
 
     };
