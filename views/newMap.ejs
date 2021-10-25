@@ -9,8 +9,8 @@
       <div class="nav-left">
         <li><a class="logo" href="http://localhost:8080/maps">📍</a></li>
         <li><a href="">CreateNew</a></li>
-        <li><a href="http://localhost:8080/maps/<%= user %>">MyMaps</a></li>
-        <li><a href="http://localhost:8080/maps/favorites/<%= user %>">Favorites</a></li>
+        <li><a href="http://localhost:8080/maps/">MyMaps</a></li>
+        <li><a href="http://localhost:8080/maps/favorites/">Favorites</a></li>
       </div>
       <div class="nav-right">
         <li><a href=""><i class="fas fa-user"></i></a></li>
@@ -19,37 +19,46 @@
     </ul>
   </nav>
 
-  <header class="page-header">
+  <header class="newmap-page-header">
   </header>
 
   <main class="container">
 
-  <section class="map-container">
-    <header class="map-container-header">
+  <section class="newmap-container">
+    <header class="newmap-container-header">
       <h3></h3>
     </header>
-      <article class="map">
-        <header class="map-header">
-          <span class="map-creator-name"></span>
-        </header>
-        <main class="map-main">
-          <div class="map-thumbnail"></div>
-          <div class="map-details">
-            <span class="name"></span>
-            <span class="location"></span>
-            <span class="description"></span>
-          </div>
-        </main>
-        <footer class="map-footer">
-          <div class="map-footer-left">
-            <span class="map-date"></span>
-          </div>
-          <div class="map-footer-right">
-            <i class="fas fa-map-pin"> 0</i>
-            <i class="far fa-star"></i>
-          </div>
-        </footer>
-      </article>
+      <form action="/newmap" method="post">
+        <article class="newmap">
+          <header class="newmap-header">
+          </header>
+          <main class="newmap-main">
+            <div class="newmap-details">
+              <span class="newmap-head">
+                <input type="text" id="newmap-title" name="title" placeholder="Map Title"><br>
+                  <span class="newmap-creator-name">
+                    <input type="submit" value="Submit">
+                  </span>
+              </span>
+              <span class="newmap-location">
+                  <input class="newmap-location-input" type="text" id="newmap-city" name="city" placeholder="City">
+                  <input class="newmap-location-input" type="text" id="newmap-province" name="province" placeholder="Province">
+                  <input class="newmap-location-input" type="text" id="newmap-country" name="country" placeholder="Country">
+              </span>
+              <span class="newmap-description">
+                <input type="text" id="newmap-description" name="description" placeholder="Description">
+              </span>
+              <div class="newmap-thumbnail">
+                <input type="text" id="newmap-thumbnail" name="thumbnail" placeholder="Paste Image Url">
+              </div>
+            </div>
+          </main>
+          <footer class="newmap-footer">
+            <div class="newmap-footer-left"></div>
+            <div class="newmap-footer-right"></div>
+          </footer>
+        </article>
+      </form>
   </section>
 
   </main>
