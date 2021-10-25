@@ -10,11 +10,13 @@ const getPinDetails = function(pin_id, db) {
   const queryParams = [pin_id];
   const queryString = `
     SELECT
-      *
+      pins.*,
+      users.name AS creator
     FROM
       pins
+      JOIN users ON pins.creator_id = users.id
     WHERE
-      id = $1;`;
+      pins.id = $1;`;
 
   return db.query(queryString, queryParams)
     .then(result => {

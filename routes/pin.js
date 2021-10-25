@@ -19,18 +19,17 @@ module.exports = (db) => {
     const pin_id = req.params.pin_id;
 
     getPinDetails(pin_id, db)
-    .then((pinData) => {
-      const templateVars = {
-        user,
-        pinData
-      };
-      console.log(templateVars);
-      res.render("pin", templateVars);
-    })
-    .catch(e => {
-      console.error(e);
-      res.send(e);
-    });
+      .then((pinData) => {
+        const templateVars = {
+          user,
+          pinData
+        };
+        res.render("update_pin", templateVars);
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
 
   });
 

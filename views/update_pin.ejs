@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/_head'); %>
+
+<body>
+
+  <%- include('partials/_nav'); %>
+
+  <main class="main-pins-container">
+
+    <header>
+      <div class="pins-map-details">
+        <h2>What would you like to update?</h2>
+      </div>
+    </header>
+
+    <section class="pins-container">
+
+        <article class=pin-container>
+          <div class=pin-container-inside>
+            <img src="<%= pinData.img_url %>">
+            <div class="pin-details">
+              <h4><%= pinData.title %></h4>
+              <p><em><%= pinData.description %></em></p>
+            </div>
+          </div>
+          <div class="pin-details">
+            <p class="coords"><em>LAT: <%= pinData.lat %></em></p>
+            <p class="coords"><em>LNG: <%= pinData.lng %></em></p>
+          </div>
+          <div class=pin-container-inside>
+            <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pinData.creator %></span>
+          </div>
+        </article>
+
+    </section>
+
+    <section class="new-pin-container">
+      <form id="new-pin-form" method="POST" action="/pin/<%= pinData.id %>">
+        <div>
+          <input id="new-pin-title" name="title" placeholder="Title">
+          <input name="description" placeholder="Description">
+        </div>
+        <div>
+          <input name="lat" placeholder="Latitude">
+          <input name="lng" placeholder="Longitude">
+        </div>
+        <div>
+          <input type="url" name="img_url" placeholder="Image URL">
+          <div class="add-pin-button-box">
+            <button id="cancel-new-pin-button" href="/pins/<%= pinData.map_id %>" type="reset">Cancel</button>
+            <button id="submit-new-pin-button" type="submit">Update</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <%- include('partials/_footer'); %>
+
+</body>
+
+</html>
