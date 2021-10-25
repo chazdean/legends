@@ -15,7 +15,7 @@ module.exports = (db) => {
 
   //Render the map details page with list of pins and the google API map
   router.get("/:map_id", (req, res) => {
-    const user_id = req.session.user_id;
+    const user = req.session.user_id;
     const map_id = req.params.map_id;
 
     getMapDetails(map_id, db)
@@ -24,7 +24,7 @@ module.exports = (db) => {
       getPinsForMap(map_id, db)
       .then((pinsArray) => {
         const templateVars = {
-          user_id,
+          user,
           mapData,
           pinsArray
         };

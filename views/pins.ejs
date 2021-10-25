@@ -5,6 +5,8 @@
 
 <body>
 
+  <%- include('partials/_nav'); %>
+
   <main class="main-pins-container">
 
     <header>
@@ -33,7 +35,7 @@
           <div class=pin-container-inside>
             <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pin.creator %></span>
 
-            <% if (user_id === pin.creator_id) { %>
+            <% if (user === pin.creator_id) { %>
               <div class="pin-modify-buttons">
                 <button id="pin-update-button"><i class="fas fa-edit"></i></button>
                 <button id="pin-delete-button"><i class="fas fa-trash-alt"></i></button>
