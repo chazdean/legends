@@ -39,28 +39,28 @@
 
     <section class="pins-container">
 
-      <% for(const pin of pinsArray) { %>
+      <% for(let i = 0; i < pinsArray.length; i++) { %>
         <article class=pin-container>
           <div class=pin-container-inside>
-            <img src="<%= pin.img_url %>">
+            <img src="<%= pinsArray[i].img_url %>">
             <div class="pin-details">
-              <h4><%= pin.title %></h4>
-              <p><em><%= pin.description %></em></p>
+              <h4><%= i + 1 %> • <%= pinsArray[i].title %></h4>
+              <p><em><%= pinsArray[i].description %></em></p>
             </div>
           </div>
           <div class="pin-details">
-            <p class="coords"><em>LAT: <%= pin.lat %></em></p>
-            <p class="coords"><em>LNG: <%= pin.lng %></em></p>
+            <p class="coords"><em>LAT: <%= pinsArray[i].lat %></em></p>
+            <p class="coords"><em>LNG: <%= pinsArray[i].lng %></em></p>
           </div>
           <div class=pin-container-inside>
-            <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pin.creator %></span>
+            <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pinsArray[i].creator %></span>
 
-            <% if (user === pin.creator_id) { %>
+            <% if (user === pinsArray[i].creator_id) { %>
               <div class="pin-modify-buttons">
-                <form method="GET" action="/pin/<%= pin.id %>">
+                <form method="GET" action="/pin/<%= pinsArray[i].id %>">
                   <button><i class="fas fa-pencil-alt"></i></button>
                 </form>
-                <form method="POST" action="/pin/delete/<%= pin.id %>">
+                <form method="POST" action="/pin/delete/<%= pinsArray[i].id %>">
                   <button><i class="fas fa-trash-alt"></i></button>
                 </form>
               </div>
@@ -88,7 +88,7 @@
 
     function initMap() {
       let map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 12,
         center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
       });
 
