@@ -1,5 +1,8 @@
 // pinScripts file is attached to the pins.ejs view
 
+import { config } from './config.js';
+const API_KEY = config.API_KEY;
+
 $(() => {
 
   const $showMap = $("#show-google-map");
@@ -25,7 +28,7 @@ const createMapElement = function() {
         }
       </script>
       <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvNdYt8Paq0IGUi3mIzvT_58_i8yvJVO4&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap">
       </script>
   `);
 }
