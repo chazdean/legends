@@ -32,7 +32,7 @@ div.pins-map-details {
   border-radius: 25px;
   border: solid 1px colors.$schemeLight;
   box-shadow: 1px 1px 5px 2px colors.$schemeDarkest;
-  @include mixins.objBounce;
+  // @include mixins.objBounce;
 
   &:hover {
     opacity: 100%;
@@ -147,5 +147,35 @@ div.pin-details {
   }
 }
 
+#map-container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#show-google-map {
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 900;
+  color: colors.$schemeDarkest;
+  background-color: colors.$schemeLightest;
+  opacity: 80%;
+  border-radius: 25px;
+  border: solid 1px colors.$schemeLight;
+  box-shadow: 1px 1px 5px 2px colors.$schemeDarkest;
+  @include mixins.objBounce;
+
+  &:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+  }
+}
+
+#map {
+  height: 400px;
+  width: 600px;
+}
 
 
