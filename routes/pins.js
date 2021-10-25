@@ -5,6 +5,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getUserWithId } = require('../databaseHelpers/userQueries');
+const { config } = require('../config');
 const {
   getPinsForMap,
   getMapDetails
@@ -24,6 +25,7 @@ module.exports = (db) => {
       getPinsForMap(map_id, db)
       .then((pinsArray) => {
         const templateVars = {
+          config,
           user,
           mapData,
           pinsArray
