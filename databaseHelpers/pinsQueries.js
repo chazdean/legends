@@ -1,5 +1,11 @@
 // Helpers for pins database queries
 
+/**
+ * getPinsForMap
+ * @param { string } map_id
+ * @param { Pool } db
+ * @returns Promise object containing all of the pins data for the given map_id
+ */
 const getPinsForMap = function(map_id, db) {
   const queryParams = [map_id];
   const queryString = `
@@ -22,6 +28,13 @@ const getPinsForMap = function(map_id, db) {
     });
 };
 
+
+/**
+ * getMapDetails
+ * @param { string } map_id
+ * @param { Pool } db
+ * @returns promise with a single row of object data, only the information for the given map_id
+ */
 const getMapDetails = function(map_id, db) {
   const queryParams = [map_id];
   const queryString = `
@@ -41,9 +54,13 @@ const getMapDetails = function(map_id, db) {
     });
 };
 
-
+/**
+ * addNewPinToMap
+ * @param { Object } newPinData contains all the form data to insert the new pin into database
+ * @param { Pool } db
+ * @returns a promise object containing the newly added pin data
+ */
 const addNewPinToMap = function(newPinData, db) {
-  console.log("obj passed into the query", newPinData)
   const queryParams = [
     newPinData.title,
     newPinData.description,
