@@ -1,12 +1,13 @@
 
-const getMap = function(userID, db) {
+const getMap = function(mapID, db) {
+  const queryParams = [mapID]
   const queryString = `
     SELECT *
     FROM maps
-    WHERE creator_id = $1;
+    WHERE maps.id = $1;
     `;
 
-  return db.query(queryString)
+  return db.query(queryString, queryParams)
     .then(result => {
       return result.rows[0]
     })
@@ -33,10 +34,11 @@ const addMap = function(mapData, db) {
     });
 };
 
-const updateMap = function(mapData, db) {
+const updateMap = function(mapID, mapData, db) {
+  const queryParams = [mapID, mapData.title, mapData.description, mapData.city, mapData.province, mapData.country]
   const queryString = `
   UPDATE maps
-  SET title = $1, description = $2, city = $3, province = $4, country = $5
+  SET title = $2, description = $3, city = $4, province = $5, country = $6
   WHERE creator_id = $1
   RETURNING *;
     `;
@@ -64,4 +66,11 @@ const deleteMap = function(mapID, db) {
     .catch(err => {
       console.log(err.message)
     });
+};
+
+module.exports = {
+  getMap,
+  addMap,
+  updateMap,
+  deleteMap
 };
