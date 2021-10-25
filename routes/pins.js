@@ -4,11 +4,11 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getUserWithId } = require('../databaseHelpers/userQueries');
 const { config } = require('../config');
 const {
   getPinsForMap,
-  getMapDetails
+  getMapDetails,
+  addNewPinToMap
  } = require('../databaseHelpers/pinsQueries');
 
 
@@ -30,7 +30,7 @@ module.exports = (db) => {
           mapData,
           pinsArray
         };
-        console.log(templateVars);
+        // console.log(templateVars);
         res.render("pins", templateVars);
       });
 
@@ -41,6 +41,23 @@ module.exports = (db) => {
     });
 
   });
+
+    //Add new pin to the database and gives it a map_id of the current map, after the database query is complete, redirect back to the pins details page for the same map
+    router.post("/:map_id", (req, res) => {
+      const user = req.session.user_id;
+      const map_id = req.params.map_id;
+
+      addNewPinToMap({ ...req.body, map_id, creator_id: user }, db)
+        .then((data) => {
+          console.log('data back from query', data);
+          res.redirect(`./${map_id}`);
+        })
+        .catch(e => {
+          console.error(e);
+          res.send(e);
+        });
+
+    });
 
   return router;
 };
