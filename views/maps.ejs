@@ -44,8 +44,13 @@
               <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
             </div>
             <div class="map-footer-right">
-              <i class="fas fa-map-pin"> 0</i>
-              <i class="far fa-star"></i>
+              <i class="fas fa-map-pin"> <%= map.pin_number%></i>
+              <div>
+                <span class="hidden">map-id-<%= map.id %></span>
+                <button class="favorite-button favorite-false">
+                  <i class="fas fa-star"></i>
+                </button>
+              </div>
             </div>
           </footer>
 
@@ -56,6 +61,8 @@
   </main>
 
   <%- include('partials/_footer'); %>
+
+  <script src="/scripts/favMapsScripts.js"></script>
 </body>
 
 </html>
