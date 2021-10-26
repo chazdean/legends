@@ -3,24 +3,26 @@
  */
 
 const express = require('express');
-const { func } = require('joi');
 const router  = express.Router();
+const moment = require('moment');
 const {
   getMaps,
   getUserMaps,
-  getFavouriteMaps
+  getFavoriteMaps
 } = require('../databaseHelpers/mapsQueries')
 
 module.exports = (db) => {
 
   //Render the main maps page
   router.get("/", (req, res) => {
-    // database functions to query for a list of 20 maps
     getMaps(db)
       .then(result => {
         console.log(result)
-        console.log(req.session.user_id)
-        res.render("maps", { maps: result, user: req.session.user_id })
+        res.render("maps", {
+          maps: result,
+          user: req.session.user_id,
+          moment: moment
+        });
       })
       .catch(e => {
         console.error(e);
@@ -35,7 +37,11 @@ module.exports = (db) => {
     getUserMaps(req.params['user_id'], db)
       .then(result => {
         console.log(result)
-        res.render("mymaps", { maps: result, user: req.session.user_id });
+        res.render("mymaps", {
+          maps: result,
+          user: req.session.user_id,
+          moment: moment
+        });
       })
       .catch(e => {
         console.error(e);
@@ -46,10 +52,14 @@ module.exports = (db) => {
   //Render the current users maps
   router.get("/favorites/:user_id", (req, res) => {
     // database functions to query for favorite maps of the current user
-    getFavouriteMaps(req.params['user_id'], db)
+    getFavoriteMaps(req.params['user_id'], db)
     .then(result => {
       console.log(result)
-      res.render("favmaps", { maps: result, user: req.session.user_id });
+      res.render("favmaps", {
+        maps: result,
+        user: req.session.user_id,
+        moment: moment
+      });
     })
     .catch(e => {
       console.error(e);

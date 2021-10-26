@@ -41,6 +41,7 @@ body.maps-page {
   margin-top: 15px;
   background-color: colors.$schemeLightest;
   border-radius: 10px 10px 10px 10px;
+  box-shadow: 1px 1px 14px 12px colors.$schemeDarkest;
   opacity: 70%;
 }
 
@@ -50,9 +51,34 @@ body.maps-page {
 }
 
 .map-main {
+  height: 110px;
+  padding-top: 5px;
   display: flex;
   flex-direction: row;
-  height: 150px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-right: 18px;
+  }
+
+  form {
+    align-self: center;
+
+    .see-more-button {
+      height: 50px;
+      width: 175px;
+      padding: 10px;
+      color: colors.$schemeDarkest;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        color: colors.$schemeOrange;
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 
 .map-thumbnail {
@@ -60,9 +86,9 @@ body.maps-page {
 }
 
 .map-details {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
 
   .name {
     font-size: 25px;
@@ -80,10 +106,6 @@ body.maps-page {
 }
 
 .map-footer-left {
-  font-size: 10px;
+  font-size: 12px;
   padding-top: 10px;
-}
-
-.map:hover {
-  border-color: colors.$schemeOrange;
 }

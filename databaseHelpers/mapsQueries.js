@@ -53,12 +53,12 @@ const getUserMaps = function(userID, db) {
 };
 
 /**
- * getFavouriteMaps
+ * getFavoriteMaps
  * @param { string } user_id from the url paramater
  * @param { Pool } db
  * @returns { Promise } containing an object with user favourited maps
  */
-const getFavouriteMaps = function(userID, db) {
+const getFavoriteMaps = function(userID, db) {
   const queryParams = [userID]
   const queryString = `
     SELECT *
@@ -78,13 +78,13 @@ const getFavouriteMaps = function(userID, db) {
 };
 
 /**
- * addFavouriteMap
+ * addFavoriteMap
  * @param { string } user_id from the url paramater
  * @param { string } map_id from the dataTag element
  * @param { Pool } db
  * @returns { Promise } containing an object with newly added favourite map
  */
-const addFavouriteMap = function(userID, db) {
+const addFavoriteMap = function(userID, db) {
   const queryParams = [userID]
   const queryString = `
     INSERT INTO
@@ -105,5 +105,5 @@ const addFavouriteMap = function(userID, db) {
 module.exports = {
   getMaps,
   getUserMaps,
-  getFavouriteMaps
+  getFavoriteMaps
 };

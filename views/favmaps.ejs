@@ -19,28 +19,36 @@
   <section class="map-container">
 
     <!-- Shows map for each map in database -->
-    <% for(let map of maps) { %>
+    <% for(const map of maps) { %>
       <article class="map">
         <header class="map-header">
           <span class="map-creator-name"><%= map.creator_name %></span>
         </header>
+
         <main class="map-main">
-          <div class="map-thumbnail">image</div>
+          <img src="<%= map.map_img_url %>">
           <div class="map-details">
             <span class="name"><%= map.title %></span>
             <span ><%= map.city %>, <%= map.country %></span>
             <span class="description"><%= map.description %></span>
           </div>
+          <form method="GET" action="/pins/<%= map.id %>" >
+            <button class="see-more-button">
+              <em>Check it out <i class="fas fa-angle-double-right"></i></em>
+            </button>
+          </form>
         </main>
+
         <footer class="map-footer">
           <div class="map-footer-left">
-            <span class="map-date"><%= map.date_created %></span>
+            <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
           </div>
           <div class="map-footer-right">
             <i class="fas fa-map-pin"> 0</i>
             <i class="far fa-star"></i>
           </div>
         </footer>
+
       </article>
     <% } %>
   </section>
