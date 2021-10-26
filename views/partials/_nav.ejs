@@ -1,28 +1,33 @@
 <nav class="nav-bar">
-  <ul>
-    <div class="nav-left">
-      <li>
-        <a class="logo" href="http://localhost:8080/maps">📍</a>
-      </li>
-      <li>
-        <a href="">CreateNew</a>
-      </li>
-      <li>
-        <a href="http://localhost:8080/maps/<%= user %>">MyMaps</a>
-      </li>
-      <li>
-        <a href="http://localhost:8080/maps/favorites/<%= user %>">Favorites</a>
-      </li>
+
+  <div class="nav-left">
+    <div class="nav-link-box">
+      <a class="home-logo" href="/maps">📍</a>
     </div>
-      <div class="nav-right">
-        <li>
-          <a href="">
-            <i class="fas fa-user"></i>
-          </a>
-        </li>
-        <li>
-          <a href="http://localhost:8080/maps/">Logout</a>
-        </li>
-      </div>
-  </ul>
+    <div class="nav-link-box">
+      <a href="/newmap">CreateNew</a>
+    </div>
+    <div class="nav-link-box">
+      <a href="/maps/<%= user %>">MyMaps</a>
+    </div>
+    <div class="nav-link-box">
+      <a href="/maps/favorites/<%= user %>">Favorites</a>
+    </div>
+
+  </div>
+
+  <div class="nav-right">
+    <div class="nav-link-box">
+      <form method="GET" action="/user">
+        <button class="profile-button"><i class="fas fa-user"></i></button>
+      </form>
+    </div>
+
+    <div class="nav-link-box">
+      <form method="POST" action="/logout">
+        <button class="logout-button">Logout <i class="fas fa-sign-out-alt"></i></button>
+      </form>
+    </div>
+  </div>
+
 </nav>
