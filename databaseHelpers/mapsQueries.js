@@ -10,11 +10,14 @@ const {
  */
 const getMaps = function(db) {
   const queryString = `
-    SELECT maps.*, users.name as creator_name
-    FROM maps
-    JOIN users ON creator_id = users.id
-    LIMIT 20
-    `;
+    SELECT
+      maps.*, users.name as creator_name
+    FROM
+      maps
+      JOIN users ON creator_id = users.id
+    ORDER BY
+      maps.date_created DESC
+    LIMIT 20;`;
 
   return db.query(queryString)
     .then(result => {
