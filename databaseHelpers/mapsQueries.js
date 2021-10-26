@@ -34,10 +34,11 @@ const getMaps = function(db) {
 const getUserMaps = function(userID, db) {
   const queryParams = [userID]
   const queryString = `
-    SELECT *
+    SELECT maps.*, users.name as creator_name
     FROM maps
     JOIN users ON maps.creator_id = users.id
     WHERE creator_id = $1
+    ORDER BY maps.id;
     `;
 
   return db.query(queryString, queryParams)
