@@ -1,0 +1,81 @@
+@use 'colors';
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.newmap-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.newmap-container-header {
+  font-size: 32px;
+  color: colors.$schemeLight;
+}
+
+.newmap {
+  border: 3px solid #545149;
+  padding: 10px 10px 10px 10px;
+  margin-top: 15px;
+  background-color: colors.$schemeLightest;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 70%;
+}
+
+.newmap-header {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.newmap-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.newmap-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.newmap-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  #newmap-title {
+    font-size: 25px;
+  }
+
+  .newmap-location {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #newmap-description {
+    height: 80px;
+    width: 90%;
+  }
+}
+
+#newmap-thumbnail {
+  width: 90%;
+  margin-top: 10px;
+}
+
+.newmap-location-input {
+  margin: 10px 10px 10px 0px;
+}
+

@@ -56,6 +56,12 @@ app.use("/maps", mapsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+const mapRoutes = require("./routes/map");
+app.use("/map", mapRoutes(db));
+
+const newMapRoutes = require("./routes/newMap");
+app.use("/newmap", newMapRoutes(db));
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
