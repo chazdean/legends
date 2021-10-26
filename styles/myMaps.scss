@@ -1,0 +1,106 @@
+@use 'colors';
+
+body.myMaps-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 4.5rem;
+}
+
+.myMaps-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.myMaps-container-header {
+  font-size: 32px;
+  color: colors.$schemeLight;
+}
+
+.myMaps {
+  border: 3px solid #545149;
+  padding: 10px 10px 10px 10px;
+  margin-top: 15px;
+  background-color: colors.$schemeLightest;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 70%;
+}
+
+.myMaps-header {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.mymaps-modify-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  button {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    color: colors.$schemeDarkest;
+    background-color: transparent;
+    opacity: 90%;
+    border: none;
+
+    &:hover {
+      opacity: 100%;
+      color: colors.$schemeOrange;
+      transform: scale(1.2);
+    }
+  }
+}
+
+.myMaps-main {
+  display: flex;
+  flex-direction: row;
+  height: 150px
+}
+
+.myMaps-thumbnail {
+  width: 140px;
+}
+
+.myMaps-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .name {
+    font-size: 25px;
+  }
+
+  .location {
+
+  }
+
+  .description {
+    margin-top: 15px;
+  }
+}
+
+.myMaps-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.myMaps-footer-left {
+  font-size: 10px;
+  padding-top: 10px;
+}
+
+.myMaps:hover {
+  border-color: colors.$schemeOrange;
+}
