@@ -10,6 +10,9 @@ const {
   updateMap,
   deleteMap
 } = require('../databaseHelpers/mapQueries')
+const {
+  getUserMaps
+} = require('../databaseHelpers/mapsQueries')
 
 module.exports = (db) => {
 
@@ -18,7 +21,7 @@ module.exports = (db) => {
     getMap(req.params['map_id'], db)
       .then(result => {
         console.log(result)
-        //res.render("maps", { map: result })
+        res.render("updateMap", { map: result, user: req.session.user_id })
       })
       .catch(e => {
         console.error(e);
@@ -32,7 +35,15 @@ module.exports = (db) => {
     updateMap(req.params['map_id'], req.body, db)
       .then(result => {
         console.log(result)
+        //res.redirect(`../maps/${req.params['map_id']}`);
         //res.render("maps", { map: result })
+
+        getUserMaps(req.session.user_id, db)
+        .then(result => {
+          console.log(result)
+          res.render("myMaps", { maps: result, user: req.session.user_id });
+        });
+
       })
       .catch(e => {
         console.error(e);
@@ -41,10 +52,17 @@ module.exports = (db) => {
   });
 
   //Delete map from database on button press
-  router.delete("/:map_id", (req, res) => {
+  router.post("/delete/:map_id", (req, res) => {
     deleteMap(req.params['map_id'], db)
       .then(result => {
         console.log(result)
+
+        getUserMaps(req.session.user_id, db)
+        .then(result => {
+          console.log(result)
+          res.render("myMaps", { maps: result, user: req.session.user_id });
+        });
+
       })
       .catch(e => {
         console.error(e);
