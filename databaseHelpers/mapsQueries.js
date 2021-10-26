@@ -11,10 +11,16 @@ const {
 const getMaps = function(db) {
   const queryString = `
     SELECT
-      maps.*, users.name as creator_name
+      maps.*,
+      count(pins.*) AS pin_number,
+      users.name as creator_name
     FROM
       maps
-      JOIN users ON creator_id = users.id
+      LEFT JOIN pins on pins.map_id = maps.id
+      JOIN users on users.id = maps.creator_id
+    GROUP BY
+      maps.id,
+      users.name
     ORDER BY
       maps.date_created DESC
     LIMIT 20;`;
