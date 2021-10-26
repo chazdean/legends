@@ -47,6 +47,8 @@ const loginRoutes = require("./routes/login");
 const mapsRoutes = require("./routes/maps");
 const pinsRoutes = require("./routes/pins");
 const pinRoutes = require("./routes/pin");
+const mapRoutes = require("./routes/map");
+const newMapRoutes = require("./routes/newMap");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -54,13 +56,9 @@ app.use("/", loginRoutes(db));
 app.use("/maps", mapsRoutes(db));
 app.use("/pins", pinsRoutes(db));
 app.use("/pin", pinRoutes(db));
-
-
-const mapRoutes = require("./routes/map");
 app.use("/map", mapRoutes(db));
-
-const newMapRoutes = require("./routes/newMap");
 app.use("/newmap", newMapRoutes(db));
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
