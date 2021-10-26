@@ -20,6 +20,7 @@ CREATE TABLE maps (
 
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
+  map_img_url TEXT NOT NULL,
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
   country VARCHAR(255) NOT NULL,
@@ -33,7 +34,7 @@ CREATE TABLE pins (
 
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
-  img_url VARCHAR(255) NOT NULL,
+  img_url TEXT NOT NULL,
   lat DECIMAL NOT NULL,
   lng DECIMAL NOT NULL,
   date_created DATE NOT NULL
