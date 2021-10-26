@@ -6,13 +6,22 @@ body.maps-page {
   align-items: center;
 }
 
-.container {
+.maps-page-container {
   width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 80px;
   padding-bottom: 4.5rem;
+
+  .maps-page-header {
+    height: 125px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
 }
 
 .map-container {
@@ -43,7 +52,7 @@ body.maps-page {
 .map-main {
   display: flex;
   flex-direction: row;
-  height: 150px
+  height: 150px;
 }
 
 .map-thumbnail {
@@ -57,10 +66,6 @@ body.maps-page {
 
   .name {
     font-size: 25px;
-  }
-
-  .location {
-
   }
 
   .description {
