@@ -105,9 +105,35 @@ const getFavoriteMapRelationships = function(user_id, db) {
     });
 };
 
+/**
+ * addFavoriteMap
+ * @param { string } user_id
+ * @param { string } map_id
+ * @param { Pool } db
+ * no return
+ */
+ const addFavoriteMap = function(user_id, map_id, db) {
+  const queryParams = [user_id, map_id]
+  const queryString = `
+    INSERT INTO
+      favmaps_users (user_id, map_id)
+    VALUES
+      ($1, $2)
+    RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+
 module.exports = {
   getMaps,
   getUserMaps,
   getFavoriteMaps,
-  getFavoriteMapRelationships
+  getFavoriteMapRelationships,
+  addFavoriteMap
 };
