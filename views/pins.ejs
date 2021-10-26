@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/_head'); %>
+
+<body>
+
+  <%- include('partials/_nav'); %>
+
+  <main class="main-pins-container">
+
+    <header>
+      <div class="pins-map-details">
+        <h2><%= mapData.title %> • <%= mapData.city %></h2>
+        <h3><em><%= mapData.description %> - <%= mapData.map_creator %> </em></h3>
+      </div>
+      <button id="add-new-pin" type="submit">+ Add Pin</button>
+    </header>
+
+    <section class="new-pin-container hidden">
+      <form id="new-pin-form" method="POST" action="/pins/<%= mapData.id %>">
+        <div>
+          <input id="new-pin-title" name="title" placeholder="Title">
+          <input name="description" placeholder="Description">
+        </div>
+        <div>
+          <input name="lat" placeholder="Latitude">
+          <input name="lng" placeholder="Longitude">
+        </div>
+        <div>
+          <input type="url" name="img_url" placeholder="Image URL">
+          <div class="add-pin-button-box">
+            <button id="cancel-new-pin-button" type="reset">Cancel</button>
+            <button id="submit-new-pin-button" type="submit">Add</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="pins-container">
+
+      <% for(let i = 0; i < pinsArray.length; i++) { %>
+        <article class=pin-container>
+          <div class=pin-container-inside>
+            <img src="<%= pinsArray[i].img_url %>">
+            <div class="pin-details">
+              <h4><%= i + 1 %> • <%= pinsArray[i].title %></h4>
+              <p><em><%= pinsArray[i].description %></em></p>
+            </div>
+          </div>
+          <div class="pin-details">
+            <p class="coords"><em>LAT: <%= pinsArray[i].lat %></em></p>
+            <p class="coords"><em>LNG: <%= pinsArray[i].lng %></em></p>
+          </div>
+          <div class=pin-container-inside>
+            <span class="pin-creator"><i class="fas fa-map-marker-alt"></i><%= pinsArray[i].creator %></span>
+
+            <% if (user === pinsArray[i].creator_id) { %>
+              <div class="pin-modify-buttons">
+                <form method="GET" action="/pin/<%= pinsArray[i].id %>">
+                  <button><i class="fas fa-pencil-alt"></i></button>
+                </form>
+                <form method="POST" action="/pin/delete/<%= pinsArray[i].id %>">
+                  <button><i class="fas fa-trash-alt"></i></button>
+                </form>
+              </div>
+            <% } %>
+
+          </div>
+        </article>
+      <% } %>
+
+    </section>
+
+    <section id="map-container">
+      <div id="map">
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('partials/_footer'); %>
+
+
+  <!-- Embedded JS for buttons & the Google Maps API -->
+  <script src="/scripts/pinPageScripts.js"></script>
+  <script>
+
+    function initMap() {
+      let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
+      });
+
+      function addMarker(settings) {
+        let marker = new google.maps.Marker({
+          position: settings.coords,
+          map: map,
+          label: settings.label
+        });
+      }
+
+      <% for (let i = 0; i < pinsArray.length; i++) { %>
+        addMarker({
+          coords: { lat: <%= pinsArray[i].lat %>, lng: <%= pinsArray[i].lng %> },
+          label: (<%= i %> + 1).toString()
+        });
+      <% } %>
+
+    };
+
+  </script>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=<%= config.API_KEY %>&callback=initMap">
+  </script>
+
+
+</body>
+
+</html>
