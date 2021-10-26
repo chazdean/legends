@@ -35,7 +35,7 @@ module.exports = (db) => {
     getUserMaps(req.params['user_id'], db)
       .then(result => {
         console.log(result)
-        res.render("maps", { maps: result, user: req.session.user_id });
+        res.render("mymaps", { maps: result, user: req.session.user_id });
       })
       .catch(e => {
         console.error(e);
@@ -49,7 +49,7 @@ module.exports = (db) => {
     getFavouriteMaps(req.params['user_id'], db)
     .then(result => {
       console.log(result)
-      res.render("maps", { maps: result, user: req.session.user_id });
+      res.render("favmaps", { maps: result, user: req.session.user_id });
     })
     .catch(e => {
       console.error(e);

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/_head'); %>
+
+<body class="maps-page">
+
+  <%- include('partials/_nav'); %>
+
+  <main class="maps-page-container">
+
+  <header class="maps-page-header">
+    <div class="pins-map-details">
+      <h2>Here are your maps</h2>
+      <h3><em>Check out what you've made ...</em></h3>
+    </div>
+  </header>
+
+  <section class="map-container">
+
+    <!-- Shows map for each map in database -->
+    <% for(let map of maps) { %>
+      <article class="map">
+        <header class="map-header">
+          <span class="map-creator-name"><%= map.creator_name %></span>
+        </header>
+        <main class="map-main">
+          <div class="map-thumbnail">image</div>
+          <div class="map-details">
+            <span class="name"><%= map.title %></span>
+            <span ><%= map.city %>, <%= map.country %></span>
+            <span class="description"><%= map.description %></span>
+          </div>
+        </main>
+        <footer class="map-footer">
+          <div class="map-footer-left">
+            <span class="map-date"><%= map.date_created %></span>
+          </div>
+          <div class="map-footer-right">
+            <i class="fas fa-map-pin"> 0</i>
+            <i class="far fa-star"></i>
+          </div>
+        </footer>
+      </article>
+    <% } %>
+  </section>
+
+  </main>
+
+  <%- include('partials/_footer'); %>
+</body>
+
+</html>
