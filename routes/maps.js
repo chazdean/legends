@@ -35,7 +35,7 @@ module.exports = (db) => {
     getUserMaps(req.params['user_id'], db)
       .then(result => {
         console.log(result)
-        res.render("maps", { maps: result, user: req.session.user_id });
+        res.render("myMaps", { maps: result, user: req.session.user_id });
       })
       .catch(e => {
         console.error(e);
