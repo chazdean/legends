@@ -1,7 +1,4 @@
-// Helpers for user database queries
-const {
-  getUserWithId
-} = require('../databaseHelpers/userQueries')
+// Helpers for maps lists database queries
 
 /**
  * getMaps
@@ -16,8 +13,8 @@ const getMaps = function(db) {
       users.name as creator_name
     FROM
       maps
-      LEFT JOIN pins on pins.map_id = maps.id
-      JOIN users on users.id = maps.creator_id
+      LEFT JOIN pins ON pins.map_id = maps.id
+      JOIN users ON users.id = maps.creator_id
     GROUP BY
       maps.id,
       users.name
@@ -36,7 +33,7 @@ const getMaps = function(db) {
 
 /**
  * getUserMaps
- * @param { string } user_id from the url paramater
+ * @param { string } user_id from the url parameter
  * @param { Pool } db
  * @returns { Promise } containing an object with user assigned maps
  */
@@ -60,9 +57,9 @@ const getUserMaps = function(userID, db) {
 
 /**
  * getFavoriteMaps
- * @param { string } user_id from the url paramater
+ * @param { string } user_id from the url parameter
  * @param { Pool } db
- * @returns { Promise } containing an object with user favourited maps
+ * @returns { Promise } containing an object with users favorite maps
  */
 const getFavoriteMaps = function(userID, db) {
   const queryParams = [userID]
@@ -84,24 +81,24 @@ const getFavoriteMaps = function(userID, db) {
 };
 
 /**
- * addFavoriteMap
- * @param { string } user_id from the url paramater
- * @param { string } map_id from the dataTag element
+ *
+ * @param { string } user_id
  * @param { Pool } db
- * @returns { Promise } containing an object with newly added favourite map
+ * @returns promise object containing a list of user favorite relations and their active status
  */
-const addFavoriteMap = function(userID, db) {
-  const queryParams = [userID]
+const getFavoriteMapRelationships = function(user_id, db) {
+  const queryParams = [user_id]
   const queryString = `
-    INSERT INTO
-      favmaps_users (user_id, map_id, active)
-    VALUES
-      ($1, $2, true)
-    RETURNING *;`;
+    SELECT
+      *
+    FROM
+      favmaps_users
+    WHERE
+      user_id = $1;`;
 
   return db.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0]
+      return result.rows
     })
     .catch(err => {
       console.log(err.message)
@@ -111,5 +108,6 @@ const addFavoriteMap = function(userID, db) {
 module.exports = {
   getMaps,
   getUserMaps,
-  getFavoriteMaps
+  getFavoriteMaps,
+  getFavoriteMapRelationships
 };
