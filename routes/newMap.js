@@ -4,18 +4,14 @@
 
 const express = require('express');
 const router  = express.Router();
-const {
-  getMap,
-  addMap,
-  updateMap,
-  deleteMap
-} = require('../databaseHelpers/mapQueries')
+const { addMap } = require('../databaseHelpers/mapQueries')
 
 module.exports = (db) => {
 
   //Renders a form page for user to create brand new map
   router.get("/", (req, res) => {
-    res.render("newMap");
+    user = req.session.user_id
+    res.render("newMap", { user });
   });
 
   //Inserts the new map into the database, render the pins page for the new map
