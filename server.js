@@ -8,7 +8,6 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieSession = require('cookie-session');
-const bcrypt = require('bcrypt');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -42,7 +41,6 @@ app.use(
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const loginRoutes = require("./routes/login");
 const mapsRoutes = require("./routes/maps");
 const pinsRoutes = require("./routes/pins");
@@ -51,7 +49,6 @@ const mapRoutes = require("./routes/map");
 const newMapRoutes = require("./routes/newMap");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/", loginRoutes(db));
 app.use("/maps", mapsRoutes(db));
 app.use("/pins", pinsRoutes(db));
