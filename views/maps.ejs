@@ -47,7 +47,19 @@
               <i class="fas fa-map-pin"> <%= map.pin_number%></i>
               <div>
                 <span class="hidden">map-id-<%= map.id %></span>
-                <button class="favorite-button favorite-false">
+                <button id="map-id-<%= map.id %>" class="favorite-button
+                <% let isFav = false
+                    for(const fav of favList) {
+                      if(fav.map_id === map.id && fav.active) {
+                        isFav = true;
+                        break;
+                      }
+                    }
+                    if (isFav) { %>
+                      favorite-true
+                    <% } else { %>
+                      favorite-false
+                      <% } %> ">
                   <i class="fas fa-star"></i>
                 </button>
               </div>
