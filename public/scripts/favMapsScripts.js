@@ -11,12 +11,14 @@ $(() => {
 
     if ($currentBtn.hasClass("favorite-false")) {
       $currentBtn.removeClass("favorite-false");
-      $currentBtn.addClass("favorite-true")
+      $currentBtn.addClass("favorite-true");
+      const map_id = $currentBtn.attr('id').substring(7);
+      addFavorite(map_id);
     }
 
     else if ($currentBtn.hasClass("favorite-true")) {
       $currentBtn.removeClass("favorite-true");
-      $currentBtn.addClass("favorite-false")
+      $currentBtn.addClass("favorite-false");
     }
 
   });
