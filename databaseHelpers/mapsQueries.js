@@ -111,23 +111,45 @@ const getFavoriteMapRelationships = function(user_id, db) {
  * @param { string } user_id
  * @param { string } map_id
  * @param { Pool } db
- * no return
+ * @returns the favorite relationship that was added or updated
  */
  const addFavoriteMap = function(user_id, map_id, db) {
   const queryParams = [user_id, map_id]
-  const queryString = `
+
+  const queryStringCheck = `
+    SELECT
+      *
+    FROM
+      favmaps_users
+    WHERE
+      user_id = $1 AND map_id = $2`;
+
+  const queryStringInsert = `
     INSERT INTO
       favmaps_users (user_id, map_id)
     VALUES
       ($1, $2)
     RETURNING *;`;
 
-  return db.query(queryString, queryParams)
-    .then(result => {
-      return result.rows[0];
-    })
-    .catch(err => {
-      console.log(err.message);
+  const queryStringUpdate = `
+    UPDATE
+      favmaps_users
+    SET
+      active = true
+    WHERE
+      user_id = $1 AND map_id = $2
+    RETURNING *;`;
+
+
+  return db.query(queryStringCheck, queryParams)
+    .then(resultCheck => {
+      if (resultCheck.rows.length) {
+        return db.query(queryStringUpdate, queryParams)
+          .then((dataUpdate) => dataUpdate.rows);
+      } else {
+        return db.query(queryStringInsert, queryParams)
+          .then((dataNew) => dataNew.rows);
+      }
     });
 };
 
