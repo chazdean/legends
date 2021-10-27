@@ -62,15 +62,28 @@ const getUserMaps = function(userID, db) {
  * @param { Pool } db
  * @returns { Promise } containing an object with users favorite maps
  */
-const getFavoriteMaps = function(userID, db) {
-  const queryParams = [userID]
+const getFavoriteMaps = function(user_id, db) {
+  const queryParams = [user_id]
   const queryString = `
-    SELECT *
-    FROM favmaps_users
-    JOIN users ON user_id = users.id
-    JOIN maps ON map_id = maps.id
-    WHERE user_id = $1 AND active = TRUE
-    `;
+    SELECT
+      maps.*,
+      count(pins.*) AS pin_number,
+      fav_table.active AS active_favorite
+    FROM (
+      SELECT
+        *
+      FROM
+        favmaps_users
+      WHERE
+        user_id = $1 AND active = true
+    ) AS fav_table
+      JOIN maps ON fav_table.map_id = maps.id
+      LEFT JOIN pins ON pins.map_id = maps.id
+    GROUP BY
+      maps.id,
+      fav_table.active
+    ORDER BY
+      maps.date_created DESC;`;
 
   return db.query(queryString, queryParams)
     .then(result => {
@@ -82,7 +95,7 @@ const getFavoriteMaps = function(userID, db) {
 };
 
 /**
- *
+ * getFavoriteMapRelationship
  * @param { string } user_id
  * @param { Pool } db
  * @returns promise object containing a list of user favorite relations and their active status
@@ -158,7 +171,7 @@ const getFavoriteMapRelationships = function(user_id, db) {
  * @param { string } user_id
  * @param { string } map_id
  * @param { Pool } db
- * no return
+ * @returns the favorite relationship that was added or updated
  */
  const removeFavoriteMap = function(user_id, map_id, db) {
   const queryParams = [user_id, map_id]
@@ -188,3 +201,12 @@ module.exports = {
   addFavoriteMap,
   removeFavoriteMap
 };
+
+
+/*
+SELECT *
+    FROM favmaps_users
+    JOIN users ON user_id = users.id
+    JOIN maps ON map_id = maps.id
+    WHERE user_id = $1 AND active = TRUE
+*/

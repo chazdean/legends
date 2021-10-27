@@ -44,8 +44,24 @@
             <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
           </div>
           <div class="map-footer-right">
-            <i class="fas fa-map-pin"> 0</i>
-            <i class="far fa-star"></i>
+            <i class="fas fa-map-pin"> <%= map.pin_number%></i>
+            <div>
+              <button id="map-id-<%= map.id %>" class="favorite-button
+              <% let isFav = false
+                  for(const fav of favList) {
+                    if(fav.map_id === map.id && fav.active) {
+                      isFav = true;
+                      break;
+                    }
+                  }
+                  if (isFav) { %>
+                    favorite-true
+                  <% } else { %>
+                    favorite-false
+                    <% } %> ">
+                <i class="fas fa-star"></i>
+              </button>
+            </div>
           </div>
         </footer>
 
@@ -56,6 +72,8 @@
   </main>
 
   <%- include('partials/_footer'); %>
+
+  <script src="/scripts/favMapsScripts.js"></script>
 </body>
 
 </html>

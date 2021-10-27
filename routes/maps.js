@@ -57,13 +57,20 @@ module.exports = (db) => {
 
   //Render the current users favorite maps
   router.get("/favorites/:user_id", (req, res) => {
-    getFavoriteMaps(req.params.user_id, db)
-    .then(result => {
-      console.log(result)
-      res.render("favmaps", {
-        maps: result,
-        user: req.session.user_id,
-        moment: moment
+    user = req.session.user_id;
+
+    getFavoriteMaps(user, db)
+    .then(mapData => {
+
+      getFavoriteMapRelationships(user, db)
+      .then((favData) => {
+        const templateVars = {
+          maps: mapData,
+          favList: favData,
+          user,
+          moment: moment
+        };
+        res.render("favmaps", templateVars);
       });
     })
     .catch(e => {
@@ -78,7 +85,7 @@ module.exports = (db) => {
 
     addFavoriteMap(user_id, map_id, db)
     .then((result) => {
-      console.log('added map to favorites', result);
+      console.log('added map to favorites', result);  // REMOVE
     })
     .catch(e => {
       console.error(e);
@@ -92,7 +99,7 @@ module.exports = (db) => {
 
     removeFavoriteMap(user_id, map_id, db)
     .then((result) => {
-      console.log('removed map from favorites - set active to false', result);
+      console.log('removed map from favorites - set active to false', result);  // REMOVE
     })
     .catch(e => {
       console.error(e);
