@@ -1,3 +1,4 @@
+// Helpers for /map related database queries
 
 const getMap = function(mapID, db) {
   const queryParams = [mapID]
@@ -17,20 +18,26 @@ const getMap = function(mapID, db) {
     });
 };
 
-const addMap = function(userID, mapData, db) {
-  const date = new Date();
-  const queryParams = [userID, mapData.title, mapData.description, mapData.city, mapData.province, mapData.country, mapData.map_img_url, date]
+const addMap = function(mapData, db) {
+  const queryParams = [
+    mapData.creator_id,
+    mapData.title,
+    mapData.description,
+    mapData.city,
+    mapData.province,
+    mapData.country,
+    mapData.map_img_url
+  ];
   const queryString = `
     INSERT INTO
-      maps (creator_id, title, description, city, province, country, img_map_url, date_created)
+      maps (creator_id, title, description, city, province, country, map_img_url, date_created)
     VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8)
-    RETURNING *;
-    `;
+      ($1, $2, $3, $4, $5, $6, $7, now()::date)
+    RETURNING *;`;
 
   return db.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0]
+      return result.rows[0];
     })
     .catch(err => {
       console.log(err.message)

@@ -16,11 +16,12 @@ module.exports = (db) => {
 
   //Inserts the new map into the database, render the pins page for the new map
   router.post("/", (req, res) => {
-    console.log("looks like we made it...")
-    console.log(req.session.user_id, req.body);
-    addMap(req.session.user_id, req.body, db)
-      .then(result => {
-        console.log(result)
+    user_id = req.session.user_id;
+
+    addMap({ ...req.body, creator_id: user_id }, db)
+      .then(newMap => {
+        console.log(newMap);
+        res.redirect(`../pins/${newMap.id}`);
       })
       .catch(e => {
         console.error(e);
