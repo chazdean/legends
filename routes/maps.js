@@ -42,17 +42,21 @@ module.exports = (db) => {
 
   //Render maps that the user has created
   router.get("/:user_id", (req, res) => {
-    // database functions to query for all individual user maps
-    // based on user_id
-    getUserMaps(req.params['user_id'], db)
-      .then(result => {
-        console.log(result)
-        res.render("myMaps", { maps: result, user: req.session.user_id });
-      })
-      .catch(e => {
-        console.error(e);
-        res.send(e);
-      });
+    user = req.params.user_id;
+
+    getUserMaps(user, db)
+    .then((mapData) => {
+      const templateVars = {
+        maps: mapData,
+        user,
+        moment: moment
+      };
+      res.render("mymaps", templateVars);
+    })
+    .catch(e => {
+      console.error(e);
+      res.send(e);
+    });
   });
 
   //Render the current users favorite maps
@@ -79,6 +83,7 @@ module.exports = (db) => {
     });
   });
 
+  //Add or update the users favorite map in the db
   router.post("/favorites/:map_id", (req, res) => {
     user_id = req.session.user_id;
     map_id = req.params.map_id;
@@ -93,6 +98,7 @@ module.exports = (db) => {
     });
   });
 
+  // Post to the db and change the favorite status to false
   router.post("/favorites/remove/:map_id", (req, res) => {
     user_id = req.session.user_id;
     map_id = req.params.map_id;
@@ -109,14 +115,3 @@ module.exports = (db) => {
 
   return router;
 };
-
-/*
-getUserMaps(req.params.user_id, db)
-.then( result => {
-  console.log(result);
-  res.render("mymaps", {
-    maps: result,
-    user: req.session.user_id,
-    moment: moment
-  });
-*/

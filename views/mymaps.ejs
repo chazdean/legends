@@ -43,9 +43,13 @@
           <div class="map-footer-left">
             <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
           </div>
-          <div class="map-footer-right">
-            <i class="fas fa-map-pin"> 0</i>
-            <i class="far fa-star"></i>
+          <div class="mymaps-modify-buttons">
+            <form method="GET" action="/map/<%= map.id %>">
+              <button><i class="fas fa-pencil-alt"></i></button>
+            </form>
+            <form method="POST" action="/map/delete/<%= map.id %>">
+              <button><i class="fas fa-trash-alt"></i></button>
+            </form>
           </div>
         </footer>
 

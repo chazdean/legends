@@ -44,7 +44,7 @@ const getUserMaps = function(userID, db) {
     FROM maps
     JOIN users ON maps.creator_id = users.id
     WHERE creator_id = $1
-    ORDER BY maps.id;
+    ORDER BY maps.date_created DESC;
     `;
 
   return db.query(queryString, queryParams)
