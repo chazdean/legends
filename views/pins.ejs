@@ -86,7 +86,9 @@
   <script src="/scripts/pinPageScripts.js"></script>
   <script>
 
-    function initMap() {
+    <% if (pinsArray.length) { %>
+
+      function initMap() {
       let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
@@ -106,8 +108,16 @@
           label: (<%= i %> + 1).toString()
         });
       <% } %>
+      }
 
-    };
+    <% } else { %>
+      function initMap() {
+      let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 3,
+        center: { lat: 51.95075825946005, lng: -94.63875081215339 }
+      });
+      }
+    <% } %>
 
   </script>
 
