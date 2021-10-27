@@ -90,7 +90,6 @@ module.exports = (db) => {
 
     addFavoriteMap(user_id, map_id, db)
     .then((result) => {
-      console.log('added map to favorites', result);  // REMOVE
     })
     .catch(e => {
       console.error(e);
@@ -104,9 +103,7 @@ module.exports = (db) => {
     map_id = req.params.map_id;
 
     removeFavoriteMap(user_id, map_id, db)
-    .then((result) => {
-      console.log('removed map from favorites - set active to false', result);  // REMOVE
-    })
+    .then(() => {})
     .catch(e => {
       console.error(e);
       res.send(e);
