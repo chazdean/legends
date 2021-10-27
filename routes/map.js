@@ -36,8 +36,9 @@ module.exports = (db) => {
   //Update details about map to database on form submit
   router.post("/:map_id", (req, res) => {
     user_id = req.session.user_id;
+    map_id = req.params.map_id;
 
-    updateMap(req.params['map_id'], req.body, db)
+    updateMap({ ...req.body, map_id }, db)
       .then(result => {
         res.redirect(`../../maps/${user_id}`);
       })
@@ -52,7 +53,7 @@ module.exports = (db) => {
     user_id = req.session.user_id;
 
     deleteMap(req.params['map_id'], db)
-      .then(result => {
+      .then(() => {
         res.redirect(`../../maps/${user_id}`);
       })
       .catch(e => {

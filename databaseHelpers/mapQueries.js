@@ -6,15 +6,14 @@ const getMap = function(mapID, db) {
     SELECT maps.*, users.name as creator_name
     FROM maps
     JOIN users ON creator_id = users.id
-    WHERE maps.id = $1;
-    `;
+    WHERE maps.id = $1;`;
 
   return db.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0]
+      return result.rows[0];
     })
     .catch(err => {
-      console.log(err.message)
+      console.log(err.message);
     });
 };
 
@@ -40,22 +39,66 @@ const addMap = function(mapData, db) {
       return result.rows[0];
     })
     .catch(err => {
-      console.log(err.message)
+      console.log(err.message);
     });
 };
 
-const updateMap = function(mapID, mapData, db) {
-  const queryParams = [mapID, mapData.title, mapData.description, mapData.city, mapData.province, mapData.country]
-  const queryString = `
-  UPDATE maps
-  SET title = $2, description = $3, city = $4, province = $5, country = $6
-  WHERE maps.id = $1
-  RETURNING *;
-    `;
+const updateMap = function(newMapData, db) {
+  const queryParams = [];
+  let queryString = `UPDATE maps SET `;
 
+  if (newMapData.title) {
+    queryParams.push(`${newMapData.title}`);
+    queryString += `title = $${queryParams.length}`;
+  }
+
+  if (newMapData.description) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newMapData.description}`);
+    queryString += `description = $${queryParams.length}`;
+  }
+
+  if (newMapData.city) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newMapData.city}`);
+    queryString += `city = $${queryParams.length}`;
+  }
+
+  if (newMapData.province) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newMapData.province}`);
+    queryString += `province = $${queryParams.length}`;
+  }
+
+  if (newMapData.country) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newMapData.country}`);
+    queryString += `country = $${queryParams.length}`;
+  }
+
+  if (newMapData.map_img_url) {
+    if (queryParams.length > 0) {
+      queryString += `, `
+    }
+    queryParams.push(`${newMapData.map_img_url}`);
+    queryString += `map_img_url = $${queryParams.length}`;
+  }
+
+  queryParams.push(`${newMapData.map_id}`);
+  queryString += ` WHERE id = $${queryParams.length} RETURNING *;`
+
+  console.log(queryString);
   return db.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0]
+      return result.rows[0];
     })
     .catch(err => {
       console.log(err.message)
@@ -65,19 +108,14 @@ const updateMap = function(mapID, mapData, db) {
 const deleteMap = function(mapID, db) {
   console.log("hey")
   const queryParams = [mapID]
-  const queryString = `
-  DELETE FROM maps
-  WHERE maps.id = $1
-  RETURNING *;
-    `;
+  const queryString = `DELETE FROM maps WHERE maps.id = $1 RETURNING *;`;
 
   return db.query(queryString, queryParams)
     .then(result => {
-      console.log("THIS GOT DELETED", result.rows[0])
-      return result.rows[0]
+      return result.rows[0];
     })
     .catch(err => {
-      console.log(err.message)
+      console.log(err.message);
     });
 };
 
