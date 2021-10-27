@@ -41,15 +41,12 @@ module.exports = (db) => {
 
   //Render maps that the user has created
   router.get("/:user_id", (req, res) => {
-
-    getUserMaps(req.params.user_id, db)
-      .then( result => {
-        console.log(result);
-        res.render("mymaps", {
-          maps: result,
-          user: req.session.user_id,
-          moment: moment
-        });
+    // database functions to query for all individual user maps
+    // based on user_id
+    getUserMaps(req.params['user_id'], db)
+      .then(result => {
+        console.log(result)
+        res.render("myMaps", { maps: result, user: req.session.user_id });
       })
       .catch(e => {
         console.error(e);
@@ -90,3 +87,14 @@ module.exports = (db) => {
 
   return router;
 };
+
+/*
+getUserMaps(req.params.user_id, db)
+.then( result => {
+  console.log(result);
+  res.render("mymaps", {
+    maps: result,
+    user: req.session.user_id,
+    moment: moment
+  });
+*/
