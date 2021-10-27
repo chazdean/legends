@@ -4,6 +4,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const moment = require('moment');
 const {
   getMap,
   updateMap,
@@ -15,9 +16,16 @@ module.exports = (db) => {
 
   //Show individual map details
   router.get("/:map_id", (req, res) => {
+    user = req.session.user_id;
+
     getMap(req.params['map_id'], db)
-      .then(result => {
-        res.render("updateMap", { map: result, user: req.session.user_id })
+      .then(mapData => {
+        templateVars = {
+          map: mapData,
+          user,
+          moment: moment
+        };
+        res.render("updateMap", templateVars)
       })
       .catch(e => {
         console.error(e);

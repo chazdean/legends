@@ -16,32 +16,33 @@
     <header class="map-container-header">
       <h3></h3>
     </header>
-    <!-- Shows map for each map in database -->
-    <% { %>
-      <article class="map">
-        <header class="map-header">
-          <span class="map-creator-name"><%= map.creator_name %></span>
-        </header>
-        <main class="map-main">
-          <div class="map-thumbnail">image</div>
-          <div class="map-details">
-            <span class="name"><%= map.title %></span>
-            <span class="location"><%= map.city %>, <%= map.country %></span>
-            <span class="description"><%= map.description %></span>
-          </div>
-        </main>
-        <footer class="map-footer">
-          <div class="map-footer-left">
-            <span class="map-date"><%= map.date_created %></span>
-          </div>
-          <div class="map-footer-right">
-            <i class="fas fa-map-pin"> 0</i>
-            <i class="far fa-star"></i>
-          </div>
-        </footer>
-      </article>
+
+    <!-- Shows individual map data -->
+    <article class="map">
+
+      <header class="map-header">
+        <span class="map-creator-name"><%= map.creator_name %></span>
+      </header>
+
+      <main class="map-main">
+        <img src="<%= map.map_img_url %>">
+        <div class="map-details">
+          <span class="name"><%= map.title %></span>
+          <span class="location"><%= map.city %>, <%= map.country %></span>
+          <span class="description"><%= map.description %></span>
+        </div>
+      </main>
+
+      <footer class="map-footer">
+        <div class="map-footer-left">
+          <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
+        </div>
+      </footer>
+
+    </article>
+
+
     <form action="/map/<%= map.id %>" method="post">
-      <% } %>
       <article class="newmap">
         <header class="newmap-header">
         </header>
@@ -72,6 +73,7 @@
         </footer>
       </article>
     </form>
+
   </section>
 
   </main>
