@@ -131,10 +131,38 @@ const getFavoriteMapRelationships = function(user_id, db) {
     });
 };
 
+/**
+ * removeFavoriteMap
+ * @param { string } user_id
+ * @param { string } map_id
+ * @param { Pool } db
+ * no return
+ */
+ const removeFavoriteMap = function(user_id, map_id, db) {
+  const queryParams = [user_id, map_id]
+  const queryString = `
+    UPDATE
+      favmaps_users
+    SET
+      active = false
+    WHERE
+      user_id = $1 AND map_id = $2
+    RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+
 module.exports = {
   getMaps,
   getUserMaps,
   getFavoriteMaps,
   getFavoriteMapRelationships,
-  addFavoriteMap
+  addFavoriteMap,
+  removeFavoriteMap
 };

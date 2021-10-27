@@ -10,7 +10,8 @@ const {
   getUserMaps,
   getFavoriteMaps,
   getFavoriteMapRelationships,
-  addFavoriteMap
+  addFavoriteMap,
+  removeFavoriteMap
 } = require('../databaseHelpers/mapsQueries')
 
 module.exports = (db) => {
@@ -78,6 +79,20 @@ module.exports = (db) => {
     addFavoriteMap(user_id, map_id, db)
     .then((result) => {
       console.log('added map to favorites', result);
+    })
+    .catch(e => {
+      console.error(e);
+      res.send(e);
+    });
+  });
+
+  router.post("/favorites/remove/:map_id", (req, res) => {
+    user_id = req.session.user_id;
+    map_id = req.params.map_id;
+
+    removeFavoriteMap(user_id, map_id, db)
+    .then((result) => {
+      console.log('removed map from favorites - set active to false', result);
     })
     .catch(e => {
       console.error(e);

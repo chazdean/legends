@@ -6,3 +6,10 @@ const addFavorite = function(map_id) {
     url: `/maps/favorites/${map_id}`
   });
 }
+
+const removeFavorite = function(map_id) {
+  return $.ajax({
+    method: "POST",
+    url: `/maps/favorites/remove/${map_id}`
+  });
+}

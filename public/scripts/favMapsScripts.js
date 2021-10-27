@@ -5,7 +5,6 @@ $(() => {
   $favBtn = $(".favorite-button");
 
   $favBtn.on("click", function() {
-    console.log('button triggered');
 
     $currentBtn = $(this).closest('button');
 
@@ -19,6 +18,8 @@ $(() => {
     else if ($currentBtn.hasClass("favorite-true")) {
       $currentBtn.removeClass("favorite-true");
       $currentBtn.addClass("favorite-false");
+      const map_id = $currentBtn.attr('id').substring(7);
+      removeFavorite(map_id);
     }
 
   });
