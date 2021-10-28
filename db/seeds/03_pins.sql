@@ -18,4 +18,11 @@ VALUES
 
   (4, 4, 'Peace Bridge', 'Walk along the Bow river', 'https://i.imgur.com/ZOqpcgX.jpeg', 51.05412775266186, -114.07898055975402, '2021-05-26T09:00:00.000Z'),
   (4, 4, 'Canada Olympic Park', 'A great place to ski', 'https://i.imgur.com/oGZk0XT.jpeg', 51.08514935323801, -114.22160733793031, '2021-05-26T09:00:00.000Z'),
-  (3, 4, 'Nose Hill Park', 'Excellent hiking trails', 'https://i.imgur.com/zYz1TMy.jpeg', 51.109446747102425, -114.10891442537984, '2021-07-19T09:00:00.000Z');
+  (3, 4, 'Nose Hill Park', 'Excellent hiking trails', 'https://i.imgur.com/zYz1TMy.jpeg', 51.109446747102425, -114.10891442537984, '2021-07-19T09:00:00.000Z'),
+
+  (1, 5, 'Breakwater Lightouse', 'Walk out to the edge and see for miles', 'https://lh5.googleusercontent.com/p/AF1QipPvQ9JfDSSZOilng5lKf_RVXLkX59Jd-IZF8W7z=w408-h544-k-no', 48.41388857426095, -123.39388790128028, '2021-07-24T09:00:00.000Z'),
+  (7, 5, 'Government Street', 'Lots restaurants and historic buildings', 'https://www.tourismvictoria.com/sites/default/files/lojo-shoppers1.jpg', 48.42553881069869, -123.36772378163407, '2021-07-30T09:00:00.000Z'),
+
+  (5, 6, 'Spirit Halloween', 'This place has the best masks', 'https://static.onecms.io/wp-content/uploads/sites/6/2012/12/scream-12.jpg', 43.64560453508988, -79.39465149167678, '2021-10-21T09:00:00.000Z'),
+  (8, 6, 'Crazy Costumes', 'Great costume ideas, and good prices', 'https://i.cbc.ca/1.5325270.1571348799!/fileImage/httpImage/pop-culture-halloween-costumes-2019.jpg', 43.65803631941631, -79.38177259194548, '2021-10-23T09:00:00.000Z'),
+  (5, 6, 'Haunted Walk', 'Spooky walk along the water front', 'https://www.tourismvictoria.com/sites/default/files/j_gibzzphoto-instagram-1236-ig-17984357806241363_1.jpg', 43.650529380257076, -79.36047658118086, '2021-10-22T09:00:00.000Z');
