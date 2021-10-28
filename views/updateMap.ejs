@@ -7,73 +7,62 @@
 
   <%- include('partials/_nav'); %>
 
-  <header class="page-header">
+  <main class="maps-page-container">
+
+  <header class="maps-page-header">
+    <div class="newmap-details">
+      <h2>What would you like to update?</h2>
+    </div>
   </header>
 
-  <main class="container">
 
   <section class="map-container">
-    <header class="map-container-header">
-      <h3></h3>
-    </header>
 
     <!-- Shows individual map data -->
-    <article class="map">
-
-      <header class="map-header">
-        <span class="map-creator-name"><%= map.creator_name %></span>
-      </header>
-
-      <main class="map-main">
-        <img src="<%= map.map_img_url %>">
-        <div class="map-details">
-          <span class="name"><%= map.title %></span>
-          <span class="location"><%= map.city %>, <%= map.country %></span>
-          <span class="description"><%= map.description %></span>
-        </div>
-      </main>
-
-      <footer class="map-footer">
-        <div class="map-footer-left">
-          <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
-        </div>
-      </footer>
-
-    </article>
-
-
     <form action="/map/<%= map.id %>" method="post">
       <article class="newmap">
-        <header class="newmap-header">
+
+        <!-- <header class="update-map-header">
+          <span class="map-creator-name"><%= map.creator_name %></span>
         </header>
-        <main class="newmap-main">
-          <div class="newmap-details">
-            <span class="newmap-head">
-              <input type="text" id="newmap-title" name="title" placeholder="Map Title"><br>
-                <span class="newmap-creator-name">
-                  <button>Update Map</button>
-                </span>
+        -->
+
+        <main class="map-main">
+          <img src="<%= map.map_img_url %>">
+          <div class="map-details">
+            <span class="newmap-name">
+              <input type="text" class="newmap-title" name="title" placeholder="<%= map.title %>">
             </span>
             <span class="newmap-location">
-                <input class="newmap-location-input" type="text" id="newmap-city" name="city" placeholder="City">
-                <input class="newmap-location-input" type="text" id="newmap-province" name="province" placeholder="Province">
-                <input class="newmap-location-input" type="text" id="newmap-country" name="country" placeholder="Country">
+              <input class="newmap-location-input" type="text" id="newmap-city" name="city" placeholder="<%= map.city %>">
+              <input class="newmap-location-input" type="text" id="newmap-country" name="country" placeholder="<%= map.country %>">
+              <input class="newmap-location-input province" type="text" id="newmap-province" name="province" placeholder="<%= map.province %>">
             </span>
-            <span class="newmap-description">
-              <input type="text" id="newmap-description" name="description" placeholder="Description">
-            </span>
-            <div class="newmap-thumbnail">
-              <input type="text" id="newmap-thumbnail" name="map_img_url" placeholder="Paste Image Url">
-            </div>
+              <span class="newmap-description-box">
+                <input type="text" class="newmap-description" name="description" placeholder="<%= map.description %>">
+              </span>
+              <div class="newmap-thumbnail">
+                <input type="text" id="newmap-thumbnail" name="map_img_url" placeholder="Paste Image Url">
+              </div>
           </div>
         </main>
-        <footer class="newmap-footer">
-          <div class="newmap-footer-left"></div>
-          <div class="newmap-footer-right"></div>
-        </footer>
-      </article>
-    </form>
 
+        <footer class="map-footer">
+          <div class="map-footer-left">
+            <span> <%= moment(map.date_created).format("MMMM DD, YYYY") %> </span>
+          </div>
+        </footer>
+
+      </article>
+
+      <div class="newmap-button-box">
+        <form method="GET" action="/maps/<%= map.creator_id %>">
+          <button class="newmap-cancel-button" type="submit">Cancel</button>
+        </form>
+        <button class="newmap-update-button">Update</button>
+      </div>
+
+    </form>
   </section>
 
   </main>
