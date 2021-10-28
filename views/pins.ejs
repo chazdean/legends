@@ -84,51 +84,58 @@
 
   <!-- Embedded JS for buttons & the Google Maps API -->
   <script src="/scripts/pinPageScripts.js"></script>
+
   <script>
-
-    <% if (pinsArray.length) { %>
+  // Check for pins in the pins array before trying to initMap
+  <% if (pinsArray.length) { %>
 
       function initMap() {
-      let map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
-      });
 
-      function addMarker(settings) {
-        let marker = new google.maps.Marker({
-          position: settings.coords,
-          map: map,
-          label: settings.label
+        let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
         });
 
-        let infoWindow = new google.maps.InfoWindow({
-          content: settings.content
-        });
+        // Set up the addMarker function to be called later in a loop
+        function addMarker(settings) {
+          let marker = new google.maps.Marker({
+            position: settings.coords,
+            map: map,
+            label: settings.label
+          });
 
-        marker.addListener('click', function(){
-          infoWindow.open(map, marker);
-        });
+          // Add an info window for each marker
+          let infoWindow = new google.maps.InfoWindow({
+            content: settings.content
+          });
+
+          // Add click listener for each marker to display info window
+          marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+          });
+        }
+
+          // Iterate on the pinsArray passed in from templateVars and add a marker for each pin
+        <% for (let i = 0; i < pinsArray.length; i++) { %>
+            addMarker({
+              coords: { lat: <%= pinsArray[i].lat %>, lng: <%= pinsArray[i].lng %> },
+              label: (<%= i %> + 1).toString(),
+              content: "<h4> <%= pinsArray[i].title %> </h4> \
+                        <p> <%= pinsArray[i].description %> </p>"
+            });
+        <%}%>
 
       }
 
-      <% for (let i = 0; i < pinsArray.length; i++) { %>
-        addMarker({
-          coords: { lat: <%= pinsArray[i].lat %>, lng: <%= pinsArray[i].lng %> },
-          label: (<%= i %> + 1).toString(),
-          content: "<h4> <%= pinsArray[i].title %> </h4> \
-                    <p> <%= pinsArray[i].description %> </p>"
-        });
-      <% } %>
-      }
-
-    <% } else { %>
-      function initMap() {
-      let map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
-        center: { lat: 51.95075825946005, lng: -94.63875081215339 }
-      });
-      }
-    <% } %>
+  // If the current map has no pins, initMap sets default coordinates for center of Canada
+  <% } else { %>
+        function initMap() {
+          let map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: { lat: 51.95075825946005, lng: -94.63875081215339 }
+          });
+        }
+  <% } %>
 
   </script>
 
