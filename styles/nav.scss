@@ -60,5 +60,30 @@ nav.nav-bar {
 
 }
 
+.selected {
+  color: colors.$schemeDarkest;
+  background-color: colors.$schemeOrange;
+  z-index: 100;
+}
+
+.message-pop {
+  color: colors.$schemeDarkest;
+  background-color: colors.$schemeLightest;
+  box-shadow: 1px 1px 8px 6px colors.$schemeDarkest;
+  border-radius: 10px;
+  border: none;
+  cursor: default;
+  display: none;
+  margin-top: 70px;
+  position: absolute;
+  right: 47px;
+  text-align: center;
+  width: 200px;
+  z-index: 50;
+  padding: 5px;
+}
+
+
+
 
 

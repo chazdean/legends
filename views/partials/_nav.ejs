@@ -18,9 +18,7 @@
 
   <div class="nav-right">
     <div class="nav-link-box">
-      <form method="GET" action="/user">
-        <button class="profile-button"><i class="fas fa-user"></i></button>
-      </form>
+      <button id="user-profile-display" class="profile-button"><i class="fas fa-user"></i></button>
     </div>
 
     <div class="nav-link-box">
@@ -30,4 +28,7 @@
     </div>
   </div>
 
+  <div class="message-pop pop">
+    <h4>Logged in as: <%= userName %></h4>
+  </div>
 </nav>

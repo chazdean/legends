@@ -40,6 +40,7 @@ module.exports = (db) => {
 
         // Email and password are correct - set the user-cookie and switch to maps home page
         req.session.user_id = userData.id;
+        req.session.user_name = userData.name;
         res.redirect("/maps");
       })
       .catch(e => {
@@ -67,6 +68,7 @@ module.exports = (db) => {
         addNewUser(req.body, db)
           .then((userData) => {
             req.session.user_id = userData.id;
+            req.session.user_name = userData.name;
             res.redirect("/maps");
           })
           .catch(e => {

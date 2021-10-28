@@ -18,7 +18,8 @@ module.exports = (db) => {
 
   //Render the main maps page
   router.get("/", (req, res) => {
-    user = req.session.user_id;
+    const user = req.session.user_id;
+    const userName = req.session.user_name;
 
     getMaps(db)
     .then(mapData => {
@@ -28,6 +29,7 @@ module.exports = (db) => {
         const templateVars = {
           maps: mapData,
           favList: favData,
+          userName,
           user,
           moment: moment
         };
@@ -42,12 +44,14 @@ module.exports = (db) => {
 
   //Render maps that the user has created
   router.get("/:user_id", (req, res) => {
-    user = req.params.user_id;
+    const user = req.params.user_id;
+    const userName = req.session.user_name;
 
     getUserMaps(user, db)
     .then((mapData) => {
       const templateVars = {
         maps: mapData,
+        userName,
         user,
         moment: moment
       };
@@ -61,7 +65,8 @@ module.exports = (db) => {
 
   //Render the current users favorite maps
   router.get("/favorites/:user_id", (req, res) => {
-    user = req.session.user_id;
+    const user = req.session.user_id;
+    const userName = req.session.user_name;
 
     getFavoriteMaps(user, db)
     .then(mapData => {
@@ -71,6 +76,7 @@ module.exports = (db) => {
         const templateVars = {
           maps: mapData,
           favList: favData,
+          userName,
           user,
           moment: moment
         };
@@ -85,8 +91,8 @@ module.exports = (db) => {
 
   //Add or update the users favorite map in the db
   router.post("/favorites/:map_id", (req, res) => {
-    user_id = req.session.user_id;
-    map_id = req.params.map_id;
+    const user_id = req.session.user_id;
+    const map_id = req.params.map_id;
 
     addFavoriteMap(user_id, map_id, db)
     .then((result) => {

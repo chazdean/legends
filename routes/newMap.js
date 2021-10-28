@@ -10,13 +10,15 @@ module.exports = (db) => {
 
   //Renders a form page for user to create brand new map
   router.get("/", (req, res) => {
-    user = req.session.user_id
-    res.render("newMap", { user });
+    const user = req.session.user_id;
+    const userName = req.session.user_name;
+
+    res.render("newMap", { user, userName });
   });
 
   //Inserts the new map into the database, render the pins page for the new map
   router.post("/", (req, res) => {
-    user_id = req.session.user_id;
+    const user_id = req.session.user_id;
 
     addMap({ ...req.body, creator_id: user_id }, db)
       .then(newMap => {

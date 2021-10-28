@@ -16,13 +16,15 @@ module.exports = (db) => {
 
   //Show individual map details
   router.get("/:map_id", (req, res) => {
-    user = req.session.user_id;
+    const user = req.session.user_id;
+    const userName = req.session.user_name;
 
     getMap(req.params['map_id'], db)
       .then(mapData => {
         templateVars = {
           map: mapData,
           user,
+          userName,
           moment: moment
         };
         res.render("updateMap", templateVars)
@@ -35,8 +37,8 @@ module.exports = (db) => {
 
   //Update details about map to database on form submit
   router.post("/:map_id", (req, res) => {
-    user_id = req.session.user_id;
-    map_id = req.params.map_id;
+    const user_id = req.session.user_id;
+    const map_id = req.params.map_id;
 
     updateMap({ ...req.body, map_id }, db)
       .then(result => {
@@ -50,7 +52,7 @@ module.exports = (db) => {
 
   //Delete map from database on button press
   router.post("/delete/:map_id", (req, res) => {
-    user_id = req.session.user_id;
+    const user_id = req.session.user_id;
 
     deleteMap(req.params['map_id'], db)
       .then(() => {
