@@ -1,1 +1,6 @@
 @use 'colors';
+
+.update-map-header {
+  display: flex;
+  flex-direction: row-reverse;
+}
