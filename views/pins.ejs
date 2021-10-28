@@ -84,6 +84,9 @@
 
   <!-- Embedded JS for buttons & the Google Maps API -->
   <script src="/scripts/pinPageScripts.js"></script>
+  <script async
+  src="https://maps.googleapis.com/maps/api/js?key=<%= config.API_KEY %>&callback=initMap">
+</script>
 
   <script>
   // Check for pins in the pins array before trying to initMap
@@ -94,6 +97,15 @@
         let map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: { lat: <%= pinsArray[0].lat %>, lng: <%= pinsArray[0].lng %> }
+        });
+
+        // Add a listener to show a new marker on the map on click
+        google.maps.event.addListener(map, 'click', function(event) {
+          addMarker({
+            coords: event.latLng,
+            label: null,
+            content: `<h4> ${event.latLng} </h4>`
+          })
         });
 
         // Set up the addMarker function to be called later in a loop
@@ -137,10 +149,6 @@
         }
   <% } %>
 
-  </script>
-
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=<%= config.API_KEY %>&callback=initMap">
   </script>
 
 
