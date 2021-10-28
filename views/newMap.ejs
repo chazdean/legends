@@ -3,49 +3,52 @@
 
 <%- include('partials/_head'); %>
 
-<body class="new-maps-page">
+<body class="maps-page">
 
   <%- include('partials/_nav'); %>
 
-  <header class="newmap-page-header">
-  </header>
+  <main class="maps-page-container">
 
-  <main class="container">
-
-  <section class="newmap-container">
-    <header class="newmap-container-header">
-      <h3></h3>
+    <header class="maps-page-header">
+      <div class="newmap-details">
+        <h2>Create a new map</h2>
+        <h3><em>Become a legend ...</em></h3>
+      </div>
     </header>
-      <form action="/newmap" method="POST">
+
+  <section class="map-container"></section>
+
+  <form action="/newmap" method="POST">
         <article class="newmap">
-          <header class="newmap-header">
-          </header>
-          <main class="newmap-main">
-            <div class="newmap-details">
-              <span class="newmap-head">
-                <input type="text" id="newmap-title" name="title" placeholder="Map Title"><br>
-                  <span class="newmap-creator-name">
-                    <button>Create Map</button>
-                  </span>
+
+          <main class="map-main">
+            <div class="map-details">
+              <span class="newmap-name">
+                <input type="text" class="newmap-title" name="title" placeholder="Map Title">
               </span>
               <span class="newmap-location">
                   <input class="newmap-location-input" type="text" id="newmap-city" name="city" placeholder="City">
-                  <input class="newmap-location-input" type="text" id="newmap-province" name="province" placeholder="Province">
                   <input class="newmap-location-input" type="text" id="newmap-country" name="country" placeholder="Country">
-              </span>
-              <span class="newmap-description">
-                <input type="text" id="newmap-description" name="description" placeholder="Description">
+                  <input class="newmap-location-input province" type="text" id="newmap-province" name="province" placeholder="Province">
+                </span>
+              <span class="newmap-description-box">
+                <input type="text" class="newmap-description" name="description" placeholder="Description">
               </span>
               <div class="newmap-thumbnail">
                 <input type="text" id="newmap-thumbnail" name="map_img_url" placeholder="Paste Image Url">
               </div>
             </div>
           </main>
-          <footer class="newmap-footer">
-            <div class="newmap-footer-left"></div>
-            <div class="newmap-footer-right"></div>
-          </footer>
+
         </article>
+
+        <div class="newmap-button-box">
+          <form method="GET" action="/maps/">
+            <button class="newmap-cancel-button" type="submit">Cancel</button>
+          </form>
+          <button class="newmap-update-button">Create</button>
+        </div>
+
       </form>
   </section>
 
