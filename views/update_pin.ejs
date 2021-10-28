@@ -42,15 +42,15 @@
     <section class="new-pin-container">
       <form id="new-pin-form" method="POST" action="/pin/<%= pinData.id %>">
         <div>
-          <input id="new-pin-title" name="title" placeholder="Title">
-          <input name="description" placeholder="Description">
+          <input id="new-pin-title" name="title" placeholder="<%= pinData.title %>">
+          <input name="description" placeholder="<%= pinData.description %>">
         </div>
         <div>
-          <input name="lat" placeholder="Latitude">
-          <input name="lng" placeholder="Longitude">
+          <input name="lat" placeholder="<%= pinData.lat %>">
+          <input name="lng" placeholder="<%= pinData.lng %>">
         </div>
         <div>
-          <input type="url" name="img_url" placeholder="Image URL">
+          <input type="url" name="img_url" placeholder="New Image URL">
           <div class="add-pin-button-box">
             <button id="submit-new-pin-button" type="submit">Update</button>
           </div>
