@@ -31,7 +31,9 @@ body.new-maps-page {
   margin-top: 15px;
   background-color: colors.$schemeLightest;
   border-radius: 10px 10px 10px 10px;
+  box-shadow: 1px 1px 14px 12px colors.$schemeDarkest;
   opacity: 70%;
+  height: 180px;
 }
 
 .newmap-header {
@@ -48,34 +50,93 @@ body.new-maps-page {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.newmap-details {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  #newmap-title {
-    font-size: 25px;
-  }
 
   .newmap-location {
     display: flex;
     flex-direction: row;
   }
+}
 
-  #newmap-description {
-    height: 80px;
-    width: 90%;
-  }
+.newmap-name {
+  font-size: 25px;
+}
+
+.newmap-title {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.newmap-description {
+  height: 50px;
+  width: 100%;
 }
 
 #newmap-thumbnail {
-  width: 90%;
-  margin-top: 10px;
+  width: 100%;
+  height: 25px;
+  margin-top: 5px;
+}
+
+.newmap-location {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%
 }
 
 .newmap-location-input {
-  margin: 10px 10px 10px 0px;
+  margin: 5px 5px 5px 0px;
+  width: 100%;
 }
 
+.newmap-location-input.province {
+  margin-right: 0px;
+}
+
+
+.newmap-button-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.newmap-update-button {
+  width: 100px;
+  height: 30px;
+  color: colors.$schemeDarkest;
+  font-weight: 900;
+  background-color: colors.$schemeOrange;
+  opacity: 80%;
+  border-radius: 25px;
+  border: solid 1px colors.$schemeOrange;
+  box-shadow: 1px 2px 5px 2px colors.$schemeDarkest;
+
+  &:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+  }
+}
+
+.newmap-cancel-button {
+  width: 100px;
+  height: 30px;
+  margin-right: 15px;
+  color: colors.$schemeDarkest;
+  font-weight: 900;
+  background-color: colors.$schemeLightest;
+  opacity: 80%;
+  border-radius: 25px;
+  border: solid 1px colors.$schemeLight;
+  box-shadow: 1px 2px 5px 2px colors.$schemeDarkest;
+
+  &:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+  }
+}
+
+.newmap-details {
+  color: colors.$schemeLightest;
+}
