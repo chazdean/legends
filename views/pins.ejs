@@ -146,6 +146,32 @@
             zoom: 3,
             center: { lat: 51.95075825946005, lng: -94.63875081215339 }
           });
+
+          google.maps.event.addListener(map, 'click', function(event) {
+            addMarker({
+              coords: event.latLng,
+              label: null,
+              content: `<h4> ${event.latLng} </h4>`
+            })
+          });
+
+          function addMarker(settings) {
+            let marker = new google.maps.Marker({
+              position: settings.coords,
+              map: map,
+              label: settings.label
+            });
+
+            // Add an info window for each marker
+            let infoWindow = new google.maps.InfoWindow({
+              content: settings.content
+            });
+
+            // Add click listener for each marker to display info window
+            marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+            });
+          }
         }
   <% } %>
 
