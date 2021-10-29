@@ -8,4 +8,5 @@ VALUES
   (3, 'Who Loves Shopping! 🛍', 'Best shopping spots in town', 'https://i.imgur.com/v4J8W6v.jpeg', 'Montreal', 'QC', 'Canada', '2021-08-19T08:00:00.000Z'),
   (4, 'Get Outside 🌲', 'Outdoor activiy spots around the city', 'https://i.imgur.com/h2Ln9lh.jpeg', 'Calgary', 'AB', 'Canada', '2021-05-25T08:00:00.000Z'),
   (1, 'View Points on the Island', 'Check out the West Coast Scenary', 'https://i.imgur.com/ZWUvieN.jpeg', 'Victoria', 'BC', 'Canada', '2021-07-24T08:00:00.000Z'),
-  (5, 'Halloween Fun 🎃', 'Top SPOOKY things to do!', 'https://i.imgur.com/8G6fIK0.png', 'Toronto', 'ON', 'Canada', '2021-10-15T08:00:00.000Z');
+  (5, 'Halloween Fun 🎃', 'Top SPOOKY things to do!', 'https://i.imgur.com/8G6fIK0.png', 'Toronto', 'ON', 'Canada', '2021-10-15T08:00:00.000Z'),
+  (1, 'Exploring Banff', 'What to do in this mountain town', 'https://roadtripalberta.com/wp-content/uploads/2019/09/Banff-thumbnail-1.jpg ', 'Banff', 'AB', 'Canada', '2021-10-26T08:00:00.000Z');

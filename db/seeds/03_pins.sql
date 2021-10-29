@@ -25,4 +25,9 @@ VALUES
 
   (5, 6, 'Spirit Halloween', 'This place has the best masks', 'https://static.onecms.io/wp-content/uploads/sites/6/2012/12/scream-12.jpg', 43.64560453508988, -79.39465149167678, '2021-10-21T09:00:00.000Z'),
   (8, 6, 'Crazy Costumes', 'Great costume ideas, and good prices', 'https://i.cbc.ca/1.5325270.1571348799!/fileImage/httpImage/pop-culture-halloween-costumes-2019.jpg', 43.65803631941631, -79.38177259194548, '2021-10-23T09:00:00.000Z'),
-  (5, 6, 'Haunted Walk', 'Spooky walk along the water front', 'https://www.tourismvictoria.com/sites/default/files/j_gibzzphoto-instagram-1236-ig-17984357806241363_1.jpg', 43.650529380257076, -79.36047658118086, '2021-10-22T09:00:00.000Z');
+  (5, 6, 'Haunted Walk', 'Spooky walk along the water front', 'https://www.tourismvictoria.com/sites/default/files/j_gibzzphoto-instagram-1236-ig-17984357806241363_1.jpg', 43.650529380257076, -79.36047658118086, '2021-10-22T09:00:00.000Z'),
+
+  (2, 7, 'Touloulous', 'Southern style cooking - great brunch', 'http://az837918.vo.msecnd.net/publishedimages/listings/6506/en-CA/images/1/tooloulous-L-9.jpg', 51.17683900798748, -115.57157362330538, '2021-10-28T09:00:00.000Z'),
+  (4, 7, 'Bear Street Tavern', 'Pizza that will knock your socks off', 'https://images.otstatic.com/prod/25587910/1/large.jpg', 51.17751750718069, -115.5726208475043, '2021-10-27T09:00:00.000Z'),
+  (1, 7, 'Banff Ave Brewing', 'Tasty beers!', 'https://pbs.twimg.com/profile_images/926141733833916416/GROfeL7v_400x400.jpg', 51.17504515987127, -115.57069328789105, '2021-10-27T09:00:00.000Z'),
+  (1, 7, 'Mountain Gondola', 'Enjoy the mountain views! ⛰', 'https://wanderthemap.com/wp-content/uploads/2017/04/Sulphur_Mountain_Hike_and_Gondola_Banff_National_Park_Canada_Featured.jpg', 51.148716885128685, -115.5558610990255, '2021-10-28T09:00:00.000Z');
